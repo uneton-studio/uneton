@@ -1,0 +1,8 @@
+@use "../../../styles/variables.scss" as v;
+
+.btn {
+  background-color: v.$backgroundLight;
+  color: v.$textColorDark;
+  padding-top: v.$size12;
+  padding-bottom: v.$size12;
+}
