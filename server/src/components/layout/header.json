@@ -5,12 +5,22 @@
   },
   "options": {},
   "attributes": {
-    "title": {
-      "type": "string"
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
     },
-    "menuLink": {
+    "links": {
       "type": "component",
       "component": "shared.link",
+      "repeatable": true
+    },
+    "buttons": {
+      "type": "component",
+      "component": "shared.button",
       "repeatable": true
     }
   },

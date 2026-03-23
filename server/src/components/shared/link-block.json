@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_shared_link_blocks",
+  "info": {
+    "displayName": "LinkBlock"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    },
+    "links": {
+      "type": "component",
+      "component": "shared.link",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}
