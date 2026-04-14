@@ -26,14 +26,14 @@
         </div>
 
         <div>
-          <a
+          <Button
             v-for="btn in global.header.buttons"
             :key="btn.id"
             :href="btn.href"
-            class="btn btn-light rounded-pill px-4"
+            variant="filled"
+            color="white"
+            >{{ btn.label }}</Button
           >
-            {{ btn.label }}
-          </a>
         </div>
       </nav>
     </div>
@@ -44,6 +44,7 @@
 import { globalService, type Global } from "@/api/global/global.service";
 import { getImageSrc } from "@/utils/utils";
 import { computed, onMounted, ref } from "vue";
+import Button from "../shared/Button.vue";
 
 const global = ref<Global | null>(null);
 const error = ref<string | null>(null);

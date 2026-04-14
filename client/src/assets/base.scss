@@ -1,5 +1,30 @@
 @import url("switzer.css");
 @import url("general-sans.css");
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/variables-dark";
+@import "bootstrap/scss/maps";
+
+$spacers: (
+  0: 0,
+  1: 0.25rem,
+  // 4px
+  2: 0.5rem,
+  // 8px
+  3: 1rem,
+  // 16px
+  4: 1.5rem,
+  // 24px
+  5: 2rem,
+  // 32px
+  6: 2.5rem,
+  // 40px
+  7: 3rem,
+  // 48px
+  8: 3.5rem, // 56px
+);
+
+@import "bootstrap/scss/bootstrap";
 
 :root {
   --vt-c-white: #ffffff;
@@ -41,7 +66,7 @@ html {
 
 body {
   min-height: 100vh;
-  color: var(--color-text-light) !important;
+  color: var(--color-text-light);
   background: var(--color-background-dark-soft) !important;
   transition:
     color 0.5s,
@@ -67,17 +92,21 @@ body .h1 {
 
 body h2,
 body .h2 {
-  font-size: 2.25rem; /*36px*/
+  font-size: 1.25rem; /*20px*/
+  line-height: 1.625rem /*26px*/;
   @media only screen and (min-width: 768px) {
-    font-size: 2.625rem; /*42px*/
+    font-size: 3.375rem; /*54px*/
+    line-height: 3.75rem /*60px*/;
   }
 }
 
 body h3,
 body .h3 {
-  font-size: 1.5rem; /*24px*/
+  font-size: 1rem; /*16px*/
+  line-height: 1.5rem; /*24px*/
   @media only screen and (min-width: 768px) {
-    font-size: 1.75rem; /*28px*/
+    font-size: 3rem; /*48px*/
+    line-height: 4.25rem /*68px*/;
   }
 }
 
@@ -125,14 +154,28 @@ body .h6 {
   font-style: normal;
 }
 
-.switzer-regular {
+body .switzer-light {
+  font-family: Switzer-Light, sans-serif;
+  font-style: normal;
+}
+
+body .switzer-regular {
   font-family: Switzer-Regular, sans-serif;
   font-weight: 400 !important;
   font-style: normal;
 }
 
-.text-mint {
-  color: var(--color-text-green-mint);
+body .switzer-italic {
+  font-family: Switzer-MediumItalic, sans-serif;
+  font-style: italic;
+}
+
+.text-light {
+  color: var(--color-text-light);
+}
+
+.text-dark {
+  color: var(--color-text-dark);
 }
 
 .text--extra-large {
@@ -158,7 +201,7 @@ body .h6 {
   line-height: 1.5rem; /*24px*/
   @media only screen and (min-width: 768px) {
     font-size: 1rem; /*16px*/
-    line-height: 1.88rem;
+    line-height: 1.5rem; /*24px*/
   }
 }
 
