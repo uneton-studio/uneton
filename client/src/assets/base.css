@@ -1,3 +1,6 @@
+@import url("switzer.css");
+@import url("general-sans.css");
+
 :root {
   --vt-c-white: #ffffff;
   --vt-c-white-soft: #f8f8f6;
@@ -44,8 +47,9 @@ body {
     color 0.5s,
     background-color 0.5s;
   line-height: 1.6;
-  font-family: "Montserrat", sans-serif !important;
-  font-size: 15px;
+  font-family: GeneralSans-Regular, sans-serif !important;
+  font-weight: 400;
+  font-size: 1rem; /*16px*/
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -53,11 +57,11 @@ body {
 
 body h1,
 body .h1 {
-  font-size: 1.625rem; /*26px*/
-  line-height: 2.25rem; /*36px*/
+  font-size: 1.75rem; /*28px*/
+  line-height: 2.125rem; /*34px*/
   @media only screen and (min-width: 768px) {
-    font-size: 3rem; /*48px*/
-    line-height: 4rem; /*64px*/
+    font-size: 6rem; /*96px*/
+    line-height: 6.5rem; /*104px*/
   }
 }
 
@@ -104,8 +108,25 @@ body a {
   color: var(--color-text-light);
 }
 
-.montserrat-alternates-regular {
-  font-family: "Montserrat Alternates", sans-serif;
+body h1,
+body h2,
+body h3,
+body h4,
+body h5,
+body h6,
+body .h1,
+body .h2,
+body .h3,
+body .h4,
+body .h5,
+body .h6 {
+  font-family: Switzer-Regular, sans-serif;
+  font-weight: 400 !important;
+  font-style: normal;
+}
+
+.switzer-regular {
+  font-family: Switzer-Regular, sans-serif;
   font-weight: 400 !important;
   font-style: normal;
 }
@@ -114,9 +135,18 @@ body a {
   color: var(--color-text-green-mint);
 }
 
+.text--extra-large {
+  font-size: 0.875rem; /*14px*/
+  line-height: 1.5rem; /*24px*/
+  @media only screen and (min-width: 768px) {
+    font-size: 1.375rem; /*22px*/
+    line-height: 2rem; /*32px*/
+  }
+}
+
 .text--large {
   font-size: 0.875rem; /*14px*/
-  line-height: 1.625rem;
+  line-height: 1.5rem; /*24px*/
   @media only screen and (min-width: 768px) {
     font-size: 1.125rem; /*18px*/
     line-height: 2.25rem;
@@ -125,7 +155,7 @@ body a {
 
 .text--big {
   font-size: 0.875rem; /*14px*/
-  line-height: 1.625rem;
+  line-height: 1.5rem; /*24px*/
   @media only screen and (min-width: 768px) {
     font-size: 1rem; /*16px*/
     line-height: 1.88rem;
@@ -134,10 +164,10 @@ body a {
 
 .text--medium {
   font-size: 0.875rem; /*14px*/
-  line-height: 1.625rem;
+  line-height: 1.5rem; /*24px*/
   @media only screen and (min-width: 768px) {
     font-size: 0.875rem; /*14px*/
-    line-height: 1.625rem;
+    line-height: 1.5rem; /*24px*/
   }
 }
 

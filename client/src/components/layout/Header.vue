@@ -1,7 +1,8 @@
 <template>
-  <header v-if="global" class="py-3">
+  <header v-if="global" class="py-3 position-fixed w-100 top-0">
     <div class="container">
-      <div
+      <nav
+        aria-label="Hauptnavigation"
         class="d-flex align-items-center justify-content-between rounded-pill px-4 py-2"
       >
         <div class="d-flex align-items-center">
@@ -13,7 +14,7 @@
           />
         </div>
 
-        <nav class="d-none d-md-flex gap-4">
+        <div class="d-none d-md-flex gap-4">
           <a
             v-for="link in global.header.links"
             :key="link.id"
@@ -22,7 +23,7 @@
           >
             {{ link.label }}
           </a>
-        </nav>
+        </div>
 
         <div>
           <a
@@ -34,7 +35,7 @@
             {{ btn.label }}
           </a>
         </div>
-      </div>
+      </nav>
     </div>
   </header>
 </template>
@@ -59,5 +60,3 @@ onMounted(async () => {
   }
 });
 </script>
-
-<style scoped></style>
