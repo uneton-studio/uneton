@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import SectionHeader from "@/components/shared/SectionHeader.vue";
-import { barrierFree } from "./data/home";
 import ActionCard from "@/components/shared/ActionCard.vue";
 import Button from "@/components/shared/Button.vue";
+import { barrierFree } from "./data";
 </script>
 
 <template>
@@ -15,11 +15,7 @@ import Button from "@/components/shared/Button.vue";
         theme="light"
       ></SectionHeader>
       <div class="row row-cols-1 row-cols-md-2">
-        <div
-          class="col"
-          v-for="item in barrierFree.barrierFreeItems"
-          :key="item.id"
-        >
+        <div class="col" v-for="item in barrierFree.items" :key="item.id">
           <ActionCard
             :title="item.title"
             :description="item.description"

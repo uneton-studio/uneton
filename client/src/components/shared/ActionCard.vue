@@ -1,6 +1,6 @@
 <template>
   <article
-    class="info-card rounded-4 p-5 p-md-6 d-flex flex-column"
+    class="info-card rounded-4 p-5 p-md-8 d-flex flex-column"
     :class="themeClass"
   >
     <header>
@@ -30,9 +30,8 @@
 </template>
 
 <script setup lang="ts">
+import type { ThemeMode } from "@/app.constants";
 import { computed, type Component } from "vue";
-
-type ThemeMode = "dark" | "light";
 
 interface Props {
   icon?: Component;
@@ -48,7 +47,7 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const themeClass = computed(() =>
-  props.theme === "dark" ? "bg-dark" : "bg-light",
+  props.theme === "dark" ? "bg-dark-mute" : "bg-light-soft",
 );
 
 const textClass = computed(() =>
@@ -59,10 +58,6 @@ const textClass = computed(() =>
 <style scoped lang="scss">
 .info-card {
   min-height: 34rem;
-
-  &.bg-dark {
-    background-color: var(--color-background-dark-mute) !important;
-  }
 }
 
 .info-card__icon {

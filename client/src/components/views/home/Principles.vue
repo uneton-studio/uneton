@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import SectionHeader from "@/components/shared/SectionHeader.vue";
-import { principles } from "./data/home";
 import ImageWithText from "@/components/shared/ImageWithText.vue";
+import { principles } from "./data";
 </script>
 
 <template>
@@ -15,7 +15,7 @@ import ImageWithText from "@/components/shared/ImageWithText.vue";
       <div class="row">
         <div
           class="col-4"
-          v-for="principle in principles.principleItems"
+          v-for="principle in principles.items"
           :key="principle.id"
         >
           <ImageWithText

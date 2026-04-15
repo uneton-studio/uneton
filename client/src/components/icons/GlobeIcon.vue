@@ -1,0 +1,32 @@
+<template>
+  <svg
+    class="globe-icon"
+    width="50"
+    height="50"
+    viewBox="0 0 50 50"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <circle
+      cx="25.0026"
+      cy="24.9987"
+      r="16.6667"
+      stroke="white"
+      stroke-width="2.5"
+    />
+    <ellipse
+      cx="25"
+      cy="24.9987"
+      rx="6.25"
+      ry="16.6667"
+      stroke="white"
+      stroke-width="2.5"
+    />
+    <path
+      d="M8.33594 25H41.6693"
+      stroke="white"
+      stroke-width="2.5"
+      stroke-linecap="round"
+    />
+  </svg>
+</template>

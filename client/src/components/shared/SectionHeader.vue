@@ -51,4 +51,8 @@ const textClass = computed(() =>
     padding-top: 11.25rem;
   }
 }
+
+p {
+  max-width: 61rem;
+}
 </style>

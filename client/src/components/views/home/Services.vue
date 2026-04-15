@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import SectionHeader from "@/components/shared/SectionHeader.vue";
 import TableRow from "@/components/shared/TableRow.vue";
-import { services } from "./data/home";
+import { services } from "./data";
 </script>
 
 <template>
@@ -12,16 +12,18 @@ import { services } from "./data/home";
         heading-id="leistungen-title"
         theme="dark"
       ></SectionHeader>
-      <TableRow
-        v-for="(service, index) in services.serviceItems"
-        :key="service.id"
-        :title="service.title"
-        :items="service.items"
-        :description="service.description || ''"
-        :icon="service.icon"
-        :with-bottom-border="index !== services.serviceItems.length - 1"
-        theme="dark"
-      />
+      <div v-if="services?.items?.length">
+        <TableRow
+          v-for="(service, index) in services.items"
+          :key="service.id"
+          :title="service.title"
+          :items="service.items"
+          :description="service.description || ''"
+          :icon="service.icon"
+          :with-bottom-border="index !== services.items.length - 1"
+          theme="dark"
+        />
+      </div>
     </div>
   </section>
 </template>

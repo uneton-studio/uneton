@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import SectionHeader from "@/components/shared/SectionHeader.vue";
-import { process } from "./data/home";
+import { process } from "./data";
 </script>
 
 <template>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Button from "@/components/shared/Button.vue";
-import { hero } from "./data/home";
+import { hero } from "./data";
 </script>
 
 <template>

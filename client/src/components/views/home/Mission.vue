@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import SectionHeader from "@/components/shared/SectionHeader.vue";
-import { mission } from "./data/home";
+import { mission } from "./data";
 </script>
 
 <template>

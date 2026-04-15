@@ -4,6 +4,7 @@ import Hero from "@/components/views/home/Hero.vue";
 import Mission from "@/components/views/home/Mission.vue";
 import Principles from "@/components/views/home/Principles.vue";
 import Process from "@/components/views/home/Process.vue";
+import Questions from "@/components/views/home/Questions.vue";
 import Services from "@/components/views/home/Services.vue";
 import Standards from "@/components/views/home/Standards.vue";
 </script>
@@ -17,6 +18,7 @@ import Standards from "@/components/views/home/Standards.vue";
     <Principles />
     <BarrierFree />
     <Standards />
+    <Questions />
   </main>
 </template>
 
