@@ -5,6 +5,7 @@ import Mission from "@/components/views/home/Mission.vue";
 import Principles from "@/components/views/home/Principles.vue";
 import Process from "@/components/views/home/Process.vue";
 import Services from "@/components/views/home/Services.vue";
+import Standards from "@/components/views/home/Standards.vue";
 </script>
 
 <template>
@@ -15,6 +16,7 @@ import Services from "@/components/views/home/Services.vue";
     <Mission />
     <Principles />
     <BarrierFree />
+    <Standards />
   </main>
 </template>
 

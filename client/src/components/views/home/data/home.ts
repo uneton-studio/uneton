@@ -4,14 +4,22 @@ import type { Component } from "vue";
 import sustainableImage from "../../../../assets/images/sustainable.webp";
 import barrierFreeImage from "../../../../assets/images/barrier-free.webp";
 import togetherImage from "../../../../assets/images/together.webp";
+import BfsgIcon from "@/components/icons/BfsgIcon.vue";
+import CheckWebsiteIcon from "@/components/icons/CheckWebsiteIcon.vue";
 
 export interface BaseSection {
   title: string;
   description?: string;
 }
 
+export interface Button {
+  label: string;
+  href: string;
+  variant: ButtonVariant;
+}
+
 export interface Hero extends BaseSection {
-  buttons: { label: string; href: string; variant: ButtonVariant }[];
+  buttons: Button[];
 }
 
 export const hero: Hero = {
@@ -146,8 +154,52 @@ export const principles: Principles = {
   ],
 };
 
-export const barrierFree: BaseSection = {
+export interface BarrierFreeItem extends BaseSection {
+  id: string;
+  icon: Component;
+  buttons: Button[];
+}
+
+export interface BarrierFree extends BaseSection {
+  barrierFreeItems: BarrierFreeItem[];
+}
+
+export const barrierFree: BarrierFree = {
   title: `Barrierefrei?<br>Nachhaltig?<br>Wir finden es heraus.`,
   description:
     "Eine Website ist barrierefrei, wenn sie trotz körperlicher oder kognitiver Einschränkungen verständlich, zugänglich und bedienbar bleibt – für echte digitale Teilhabe.",
+  barrierFreeItems: [
+    {
+      id: "bfsg",
+      title: "Bin ich vom BFSG betroffen?",
+      description:
+        "We integrate environmentally friendly practices and materials into our projects.",
+      icon: BfsgIcon,
+      buttons: [
+        {
+          label: "Kurz prüfen",
+          href: "/",
+          variant: "filled",
+        },
+      ],
+    },
+    {
+      id: "check-website",
+      title: "Website prüfen!",
+      description:
+        "We integrate environmentally friendly practices and materials into our projects.",
+      icon: CheckWebsiteIcon,
+      buttons: [
+        {
+          label: "Website prüfen",
+          href: "/",
+          variant: "filled",
+        },
+      ],
+    },
+  ],
+};
+
+export const standards: BaseSection = {
+  title: "Unsere Standards",
 };
