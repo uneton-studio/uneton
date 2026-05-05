@@ -126,7 +126,7 @@ const wrapperStyle = computed(() => ({
 }));
 </script>
 
-<style scoped lang="scss">
+<style scoped lang="css">
 .research-strategy-circles {
   display: inline-flex;
 }

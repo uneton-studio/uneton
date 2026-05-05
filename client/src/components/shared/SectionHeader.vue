@@ -1,26 +1,3 @@
-<template>
-  <div class="section-header d-flex justify-content-between">
-    <div>
-      <h2
-        class="h1 mb-0"
-        :id="headingId"
-        :class="textClass"
-        v-html="title"
-      ></h2>
-
-      <p
-        v-if="description"
-        class="text--extra-large mt-5 mb-0"
-        :class="textClass"
-      >
-        {{ description }}
-      </p>
-    </div>
-
-    <Dots :color="theme" class="mt-3" />
-  </div>
-</template>
-
 <script setup lang="ts">
 import { computed } from "vue";
 import Dots from "../icons/BlinkingDots.vue";
@@ -44,15 +21,25 @@ const textClass = computed(() =>
 );
 </script>
 
-<style scoped>
-.section-header {
-  padding-top: 5rem;
-  @media only screen and (min-width: 768px) {
-    padding-top: 11.25rem;
-  }
-}
+<template>
+  <div class="section-header flex justify-between pt-[5rem] md:pt-[11.25rem]">
+    <div>
+      <h2
+        class="text-[1.75rem] leading-[2.125rem] md:text-[6rem] md:leading-[6.5rem]"
+        :id="headingId"
+        :class="textClass"
+        v-html="title"
+      ></h2>
 
-p {
-  max-width: 61rem;
-}
-</style>
+      <p
+        v-if="description"
+        class="text-[0.875rem] leading-6 md:text-[1.375rem] md:leading-8 mt-[2rem] max-w-[61rem]"
+        :class="textClass"
+      >
+        {{ description }}
+      </p>
+    </div>
+
+    <Dots :color="theme" class="mt-[0.75rem]" />
+  </div>
+</template>

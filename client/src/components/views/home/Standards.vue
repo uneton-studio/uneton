@@ -6,7 +6,7 @@ import TextCard from "@/components/shared/TextCard.vue";
 </script>
 
 <template>
-  <section aria-labelledby="standards-title" class="standards">
+  <section aria-labelledby="standards-title" class="standards bg-light">
     <div class="container">
       <SectionHeader
         :title="standards.title"
@@ -14,40 +14,38 @@ import TextCard from "@/components/shared/TextCard.vue";
         theme="dark"
       />
 
-      <div class="row align-items-stretch">
-        <div class="col-3 d-flex">
+      <div
+        class="grid grid-cols-1 md:grid-cols-4 items-stretch mt-[7.5rem] pb-[13.5rem]"
+      >
+        <div class="flex md:col-span-1">
           <TextCard
             :title="standards.card?.title"
             :description="standards.card?.description"
             :items="standards.card?.items"
             :button="standards.card?.button"
-            class="w-100 h-100"
+            class="w-full h-full"
           />
         </div>
 
-        <div class="col-3 d-flex">
-          <div class="w-100 h-100">
+        <div class="flex md:col-span-1">
+          <div class="w-full h-full">
             <img
               :src="standards.image"
               :alt="standards.imageAlt"
-              class="w-100 h-100 d-block rounded-4 object-fit-cover"
+              class="w-full h-full block rounded-2xl object-cover"
             />
           </div>
         </div>
 
-        <div class="col-6 d-flex">
-          <div class="row row-cols-1 row-cols-md-2 gx-4 gy-3 w-100">
-            <div
-              class="col d-flex"
-              v-for="item in standards.items"
-              :key="item.id"
-            >
+        <div class="flex md:col-span-2">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-3 w-full">
+            <div class="flex" v-for="item in standards.items" :key="item.id">
               <IconCard
                 :icon="item.icon"
                 :title="item.title"
                 :description="item.description"
                 :theme="item.theme"
-                class="w-100 h-100"
+                class="w-full h-full"
               />
             </div>
           </div>
@@ -56,14 +54,3 @@ import TextCard from "@/components/shared/TextCard.vue";
     </div>
   </section>
 </template>
-
-<style scoped lang="scss">
-section {
-  background-color: var(--color-background-light);
-}
-
-.container > .row {
-  margin-top: 7.5rem;
-  padding-bottom: 13.5rem;
-}
-</style>

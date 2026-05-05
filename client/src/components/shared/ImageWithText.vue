@@ -1,25 +1,3 @@
-<!-- ImageTextCard.vue -->
-<template>
-  <article class="image-text-card w-100">
-    <img
-      :src="image"
-      :alt="imageAlt"
-      class="w-100 d-block rounded-4 object-fit-cover"
-      :style="imageStyle"
-    />
-
-    <div class="mt-5">
-      <h3 class="h2 mb-0" :class="textClass">
-        {{ title }}
-      </h3>
-
-      <p v-if="description" class="text-big mt-4 mb-0" :class="textClass">
-        {{ description }}
-      </p>
-    </div>
-  </article>
-</template>
-
 <script setup lang="ts">
 import { computed } from "vue";
 import type { ThemeMode } from "@/app.constants";
@@ -51,3 +29,31 @@ const imageStyle = computed(() => ({
   objectPosition: props.imagePosition,
 }));
 </script>
+
+<template>
+  <article class="image-text-card w-full">
+    <img
+      :src="image"
+      :alt="imageAlt"
+      class="w-full block rounded-2xl object-cover"
+      :style="imageStyle"
+    />
+
+    <div class="mt-[2rem]">
+      <h3
+        class="text-xl leading-[1.625rem] md:text-[3.375rem] md:leading-[3.75rem]"
+        :class="textClass"
+      >
+        {{ title }}
+      </h3>
+
+      <p
+        v-if="description"
+        class="text-[0.75rem] leading-[1.125rem] md:text-[1.125rem] md:leading-[1.75rem] mt-[1rem]"
+        :class="textClass"
+      >
+        {{ description }}
+      </p>
+    </div>
+  </article>
+</template>

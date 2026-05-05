@@ -1,23 +1,3 @@
-<template>
-  <article class="icon-card rounded-4 p-5" :class="themeClass">
-    <div v-if="icon" class="mb-4">
-      <component
-        :is="icon"
-        class="icon-card__icon d-block"
-        aria-hidden="true"
-      />
-    </div>
-
-    <p class="text--large switzer-medium mb-2" :class="textClass">
-      {{ title }}
-    </p>
-
-    <p v-if="description" class="text--medium mb-0" :class="textClass">
-      {{ description }}
-    </p>
-  </article>
-</template>
-
 <script setup lang="ts">
 import type { ThemeMode } from "@/app.constants";
 import { computed, type Component } from "vue";
@@ -44,9 +24,29 @@ const textClass = computed(() =>
 );
 </script>
 
-<style scoped lang="scss">
-.icon-card__icon {
-  width: 3.125rem;
-  height: 3.125rem;
-}
-</style>
+<template>
+  <article class="icon-card rounded-2xl p-5" :class="themeClass">
+    <div v-if="icon" class="mb-[1.5rem]">
+      <component
+        :is="icon"
+        class="block w-[3.125rem] h-[3.125rem]"
+        aria-hidden="true"
+      />
+    </div>
+
+    <p
+      class="text-base md:text-[1.25rem] leading-6 font-medium mb-[0.5rem]"
+      :class="textClass"
+    >
+      {{ title }}
+    </p>
+
+    <p
+      v-if="description"
+      class="text-[0.875rem] leading-6 md:text-[1rem] md:leading-6"
+      :class="textClass"
+    >
+      {{ description }}
+    </p>
+  </article>
+</template>

@@ -14,37 +14,38 @@ import AccordionItem from "@/components/shared/AccordionItem.vue";
         heading-id="questions-title"
         theme="light"
       ></SectionHeader>
-      <div class="row align-items-stretch">
-        <div class="col-12 col-md-6 d-flex" v-if="questions.card">
+
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 items-stretch mt-[7.5rem] pb-[14rem]"
+      >
+        <div v-if="questions.card" class="flex">
           <ActionCard
             :title="questions.card.title"
             :description="questions.card.description"
             :icon="questions.card.icon"
-            class="w-100"
+            class="w-full"
           >
-            <Button :variant="questions.card.button.variant" color="white">{{
-              questions.card.button.label
-            }}</Button>
+            <Button :variant="questions.card.button.variant" color="white">
+              {{ questions.card.button.label }}
+            </Button>
           </ActionCard>
         </div>
-        <div class="col-12 col-md-6 d-flex flex-column" v-if="questions.items">
+
+        <div v-if="questions.items" class="flex flex-col">
           <AccordionItem
             v-for="(item, index) in questions.items"
             :key="item.id"
             :title="item.title"
-            :class="index !== questions.items.length - 1 ? 'mb-3' : ''"
+            :class="index !== questions.items.length - 1 ? 'mb-[1rem]' : ''"
           >
-            <p class="text--medium px-4 pb-4">{{ item.description }}</p>
+            <p
+              class="text-[0.875rem] leading-6 md:text-[1rem] md:leading-6 px-4 pb-4"
+            >
+              {{ item.description }}
+            </p>
           </AccordionItem>
         </div>
       </div>
     </div>
   </section>
 </template>
-
-<style scoped lang="scss">
-.container > .row {
-  margin-top: 7.5rem;
-  padding-bottom: 14rem;
-}
-</style>

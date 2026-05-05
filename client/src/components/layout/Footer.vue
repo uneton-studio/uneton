@@ -5,7 +5,7 @@
         <p>{{ nav.label }}</p>
         <div>
           <p v-for="link in nav.links" :key="link.id">
-            <a :href="link.href" class="text-white text-decoration-none small">
+            <a :href="link.href" class="text-white no-underline text-sm">
               {{ link.label }}
             </a>
           </p>

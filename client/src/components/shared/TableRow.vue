@@ -1,38 +1,3 @@
-<template>
-  <article class="service-row" :class="{ 'border-bottom': withBottomBorder }">
-    <div class="row align-items-start">
-      <div class="col-12 col-md-2">
-        <component :is="icon" />
-      </div>
-
-      <div class="col-12 col-md-3">
-        <h3 class="h2 mb-0" :class="textClass">
-          {{ title }}
-        </h3>
-      </div>
-
-      <div class="col-12 col-md-3">
-        <ul class="service-row__list list-unstyled mb-0">
-          <li
-            v-for="item in items"
-            :key="item"
-            class="text-big"
-            :class="textClass"
-          >
-            {{ item }}
-          </li>
-        </ul>
-      </div>
-
-      <div class="col-12 col-md-4">
-        <p class="text-big mb-0" :class="textClass">
-          {{ description }}
-        </p>
-      </div>
-    </div>
-  </article>
-</template>
-
 <script setup lang="ts">
 import type { ThemeMode } from "@/app.constants";
 import { computed, type Component } from "vue";
@@ -56,12 +21,46 @@ const textClass = computed(() =>
 );
 </script>
 
-<style scoped lang="scss">
-article {
-  padding: 5rem 0;
-}
+<template>
+  <article
+    class="service-row py-[5rem]"
+    :class="{ 'border-b': withBottomBorder }"
+  >
+    <div class="grid grid-cols-1 md:grid-cols-12 items-start">
+      <div class="md:col-span-2">
+        <component :is="icon" />
+      </div>
 
-.service-row__list li + li {
-  margin-top: 0.5rem;
-}
-</style>
+      <div class="md:col-span-3">
+        <h3
+          class="text-xl leading-[1.625rem] md:text-[3.375rem] md:leading-[3.75rem]"
+          :class="textClass"
+        >
+          {{ title }}
+        </h3>
+      </div>
+
+      <div class="md:col-span-3">
+        <ul class="space-y-[0.5rem]">
+          <li
+            v-for="item in items"
+            :key="item"
+            class="text-[0.75rem] leading-[1.125rem] md:text-[1.125rem] md:leading-[1.75rem]"
+            :class="textClass"
+          >
+            {{ item }}
+          </li>
+        </ul>
+      </div>
+
+      <div class="md:col-span-4">
+        <p
+          class="text-[0.75rem] leading-[1.125rem] md:text-[1.125rem] md:leading-[1.75rem]"
+          :class="textClass"
+        >
+          {{ description }}
+        </p>
+      </div>
+    </div>
+  </article>
+</template>

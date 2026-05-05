@@ -5,13 +5,18 @@ import { services } from "./data";
 </script>
 
 <template>
-  <section aria-labelledby="leistungen-title" class="services">
+  <section
+    aria-labelledby="leistungen-title"
+    class="services bg-light-soft pb-[6.25rem]"
+  >
     <div class="container">
       <SectionHeader
         :title="services.title"
         heading-id="leistungen-title"
         theme="dark"
+        class="mb-[2.5rem]"
       ></SectionHeader>
+
       <div v-if="services?.items?.length">
         <TableRow
           v-for="(service, index) in services.items"
@@ -27,14 +32,3 @@ import { services } from "./data";
     </div>
   </section>
 </template>
-
-<style scoped lang="scss">
-section {
-  background-color: var(--color-background-light-soft);
-  padding-bottom: 6.25rem;
-}
-
-.section-header {
-  margin-bottom: 2.5rem;
-}
-</style>

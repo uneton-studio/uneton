@@ -1,11 +1,47 @@
+<script setup lang="ts">
+import { globalService, type Global } from "@/api/global/global.service";
+import { getImageSrc } from "@/utils/utils";
+import { computed, onBeforeUnmount, onMounted, ref } from "vue";
+import Button from "../shared/Button.vue";
+
+const global = ref<Global | null>(null);
+const error = ref<string | null>(null);
+const isScrolled = ref(false);
+
+const logoSrc = computed(() =>
+  getImageSrc(global.value?.header.logo?.url || ""),
+);
+
+function updateHeaderBackground() {
+  isScrolled.value = window.scrollY > 10;
+}
+
+onMounted(async () => {
+  window.addEventListener("scroll", updateHeaderBackground, { passive: true });
+  updateHeaderBackground();
+
+  try {
+    const res = await globalService.getGlobal();
+    global.value = res.data;
+  } catch (e) {
+    error.value = e instanceof Error ? e.message : "Failed to load";
+  }
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener("scroll", updateHeaderBackground);
+});
+</script>
+
 <template>
-  <header v-if="global" class="py-3 position-fixed w-100 top-0">
-    <div class="container">
+  <header v-if="global" class="fixed top-0 z-50 w-full pt-5">
+    <div class="px-4">
       <nav
         aria-label="Hauptnavigation"
-        class="d-flex align-items-center justify-content-between rounded-pill px-4 py-2"
+        class="mx-auto flex max-w-[1700px] items-center justify-between rounded-full px-4 py-2 transition-all duration-300"
+        :class="isScrolled ? 'bg-dark-mute shadow-md' : 'bg-transparent'"
       >
-        <div class="d-flex align-items-center">
+        <div class="flex items-center">
           <img
             v-if="global.header.logo?.url"
             :src="logoSrc"
@@ -14,12 +50,12 @@
           />
         </div>
 
-        <div class="d-none d-md-flex gap-4">
+        <div class="hidden md:flex gap-4">
           <a
             v-for="link in global.header.links"
             :key="link.id"
             :href="link.href"
-            class="text-white text-decoration-none small"
+            class="text-light no-underline text-sm"
           >
             {{ link.label }}
           </a>
@@ -32,32 +68,11 @@
             :href="btn.href"
             variant="filled"
             color="white"
-            >{{ btn.label }}</Button
           >
+            {{ btn.label }}
+          </Button>
         </div>
       </nav>
     </div>
   </header>
 </template>
-
-<script setup lang="ts">
-import { globalService, type Global } from "@/api/global/global.service";
-import { getImageSrc } from "@/utils/utils";
-import { computed, onMounted, ref } from "vue";
-import Button from "../shared/Button.vue";
-
-const global = ref<Global | null>(null);
-const error = ref<string | null>(null);
-const logoSrc = computed(() =>
-  getImageSrc(global.value?.header.logo?.url || ""),
-);
-
-onMounted(async () => {
-  try {
-    const res = await globalService.getGlobal();
-    global.value = res.data;
-  } catch (e) {
-    error.value = e instanceof Error ? e.message : "Failed to load";
-  }
-});
-</script>

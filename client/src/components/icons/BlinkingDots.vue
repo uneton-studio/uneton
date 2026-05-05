@@ -1,12 +1,16 @@
 <template>
-  <div class="d-grid blink-dots" :style="gridStyle" aria-hidden="true">
+  <div
+    class="grid content-start justify-start leading-none blink-dots"
+    :style="gridStyle"
+    aria-hidden="true"
+  >
     <span
       v-for="(dot, index) in dots"
       :key="index"
-      class="rounded-circle blink-dots__dot"
+      class="block rounded-full opacity-0 scale-[0.7] transition-[opacity,transform] duration-250 ease-in-out blink-dots__dot"
       :class="{ 'blink-dots__dot--active': dot }"
       :style="getDotStyle()"
-    />
+    ></span>
   </div>
 </template>
 
@@ -107,7 +111,7 @@ onBeforeUnmount(() => {
 });
 </script>
 
-<style scoped lang="scss">
+<style scoped lang="css">
 .blink-dots {
   justify-content: start;
   align-items: start;

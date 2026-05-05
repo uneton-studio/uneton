@@ -14,8 +14,9 @@ import { barrierFree } from "./data";
         heading-id="barrier-free-title"
         theme="light"
       ></SectionHeader>
-      <div class="row row-cols-1 row-cols-md-2">
-        <div class="col" v-for="item in barrierFree.items" :key="item.id">
+
+      <div class="grid grid-cols-1 md:grid-cols-2 mt-[10.25rem] mb-[11.5rem]">
+        <div v-for="item in barrierFree.items" :key="item.id">
           <ActionCard
             :title="item.title"
             :description="item.description"
@@ -28,18 +29,11 @@ import { barrierFree } from "./data";
               :variant="button.variant"
               color="white"
             >
-              {{ button.label }}</Button
-            >
+              {{ button.label }}
+            </Button>
           </ActionCard>
         </div>
       </div>
     </div>
   </section>
 </template>
-
-<style scoped lang="scss">
-.row {
-  margin-top: 10.25rem;
-  margin-bottom: 11.5rem;
-}
-</style>

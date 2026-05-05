@@ -1,16 +1,3 @@
-<template>
-  <component
-    :is="tag"
-    :to="isRouterLink ? to : undefined"
-    :href="isAnchor ? href : undefined"
-    :class="buttonClasses"
-    :disabled="isButton ? disabled : undefined"
-    @click="handleClick"
-  >
-    <slot />
-  </component>
-</template>
-
 <script setup lang="ts">
 import type { ButtonVariant } from "@/app.constants";
 import { computed } from "vue";
@@ -47,31 +34,35 @@ const isButton = computed(() => props.tag === "button");
 const isAnchor = computed(() => props.tag === "a");
 const isRouterLink = computed(() => props.tag === "router-link");
 
-const bootstrapColorMap: Record<ButtonColor, string> = {
-  white: "light",
-  black: "dark",
-};
-
 const variantClass = computed(() => {
-  const color = bootstrapColorMap[props.color];
+  if (props.variant === "outlined") {
+    return props.color === "white"
+      ? "border border-white text-white bg-transparent"
+      : "border border-black text-black bg-transparent";
+  }
 
-  if (props.variant === "outlined") return `btn-outline-${color}`;
-  if (props.variant === "link") return `btn-link text-${color}`;
+  if (props.variant === "link") {
+    return props.color === "white"
+      ? "bg-transparent text-white underline"
+      : "bg-transparent text-black underline";
+  }
 
-  return `btn-${color}`;
+  return props.color === "white"
+    ? "bg-white text-black"
+    : "bg-black text-white";
 });
 
 const sizeClass = computed(() => {
-  if (props.size === "sm") return "btn-sm";
-  if (props.size === "lg") return "btn-lg";
-  return "";
+  if (props.size === "sm") return "text-sm px-4 py-2";
+  if (props.size === "lg") return "text-lg px-6 py-3";
+  return "text-base px-5 py-2.5";
 });
 
 const buttonClasses = computed(() => [
-  "btn rounded-pill px-4 py-2",
+  "inline-flex items-center justify-center rounded-full transition",
   variantClass.value,
   sizeClass.value,
-  { disabled: props.disabled },
+  props.disabled ? "opacity-50 pointer-events-none" : "",
 ]);
 
 const tag = computed(() => props.tag);
@@ -86,3 +77,16 @@ function handleClick(event: MouseEvent) {
   emit("click", event);
 }
 </script>
+
+<template>
+  <component
+    :is="tag"
+    :to="isRouterLink ? to : undefined"
+    :href="isAnchor ? href : undefined"
+    :class="buttonClasses"
+    :disabled="isButton ? disabled : undefined"
+    @click="handleClick"
+  >
+    <slot />
+  </component>
+</template>

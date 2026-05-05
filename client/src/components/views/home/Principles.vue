@@ -5,19 +5,16 @@ import { principles } from "./data";
 </script>
 
 <template>
-  <section aria-labelledby="principles-title" class="principles">
+  <section aria-labelledby="principles-title" class="principles bg-light">
     <div class="container">
       <SectionHeader
         :title="principles.title"
         heading-id="principles-title"
         theme="dark"
       ></SectionHeader>
-      <div class="row">
-        <div
-          class="col-4"
-          v-for="principle in principles.items"
-          :key="principle.id"
-        >
+
+      <div class="grid grid-cols-1 md:grid-cols-3 mt-[7.5rem] pb-[11.25rem]">
+        <div v-for="principle in principles.items" :key="principle.id">
           <ImageWithText
             :title="principle.title"
             :description="principle.description"
@@ -30,14 +27,3 @@ import { principles } from "./data";
     </div>
   </section>
 </template>
-
-<style scoped lang="scss">
-section {
-  background-color: var(--color-background-light);
-}
-
-.row {
-  margin-top: 7.5rem;
-  padding-bottom: 11.25rem;
-}
-</style>

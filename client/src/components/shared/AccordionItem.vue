@@ -56,27 +56,24 @@ onMounted(() => {
 
 <template>
   <article
-    class="accordion-item-custom rounded-4 overflow-hidden"
+    class="accordion-item-custom rounded-2xl overflow-hidden"
     :class="themeClass"
   >
     <button
       type="button"
-      class="cursor-pointer p-4 text--large w-100 border-0 d-flex align-items-center justify-content-between text-start"
+      class="cursor-pointer p-4 text-lg w-full border-0 flex items-center justify-between text-left"
       :class="textClass + ' ' + themeClass"
       :aria-expanded="isOpen"
       :aria-controls="panelId"
       @click="toggle"
     >
-      <span class="pe-3">
+      <span class="pr-3">
         {{ title }}
       </span>
 
-      <span
-        class="accordion-item-custom__icon flex-shrink-0"
-        aria-hidden="true"
-      >
-        {{ isOpen ? "-" : "+" }}
-      </span>
+      <span class="accordion-item-custom__icon shrink-0" aria-hidden="true">{{
+        isOpen ? "-" : "+"
+      }}</span>
     </button>
 
     <div
