@@ -3,6 +3,7 @@ import { globalService, type Global } from "@/api/global/global.service";
 import { getImageSrc } from "@/utils/utils";
 import { computed, onBeforeUnmount, onMounted, ref } from "vue";
 import Button from "../shared/Button.vue";
+import DotsIcon from "../icons/DotsIcon.vue";
 
 const global = ref<Global | null>(null);
 const error = ref<string | null>(null);
@@ -38,30 +39,29 @@ onBeforeUnmount(() => {
     <div class="px-4">
       <nav
         aria-label="Hauptnavigation"
-        class="mx-auto flex max-w-[1700px] items-center justify-between rounded-full px-4 py-2 transition-all duration-300"
+        class="mx-auto flex max-w-425 items-center justify-between rounded-full px-6 md:px-4 py-4 md:py-3 transition-all duration-300"
         :class="isScrolled ? 'bg-dark-mute shadow-md' : 'bg-transparent'"
       >
-        <div class="flex items-center">
+        <div class="flex items-center md:ps-3">
           <img
             v-if="global.header.logo?.url"
             :src="logoSrc"
             :alt="global.header.logo.alternativeText"
-            height="32"
+            class="h-4.5 w-auto md:h-8"
           />
         </div>
 
-        <div class="hidden md:flex gap-4">
-          <a
+        <div class="hidden md:flex gap-12">
+          <RouterLink
             v-for="link in global.header.links"
             :key="link.id"
-            :href="link.href"
+            :to="link.href"
             class="text-light no-underline text-sm"
+            >{{ link.label }}</RouterLink
           >
-            {{ link.label }}
-          </a>
         </div>
 
-        <div>
+        <div class="hidden md:block">
           <Button
             v-for="btn in global.header.buttons"
             :key="btn.id"
@@ -71,6 +71,10 @@ onBeforeUnmount(() => {
           >
             {{ btn.label }}
           </Button>
+        </div>
+
+        <div class="md:hidden">
+          <DotsIcon />
         </div>
       </nav>
     </div>

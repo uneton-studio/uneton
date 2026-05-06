@@ -27,7 +27,7 @@ import GlobeLargeIcon from "@/components/icons/GlobeLargeIcon.vue";
 export const hero: Hero = {
   title: "Design Studio für zeitloses Webdesign",
   description:
-    "Corporate Design, UX/UI Design und Webentwicklung - ganzheitliche digitale Lösungen aus einer Hand.",
+    "Wir bauen keine Websites für dich - wir bauen sie mit dir. Corporate steht bei uns für ganzheitliche digitale Lösungen aus einer Hand und echte Partnerschaft auf Augenhöhe.",
   buttons: [
     {
       label: "Erstgespräch vereinbaren",
@@ -56,7 +56,7 @@ export const services: Services = {
         "Vision & Mission",
       ],
       description:
-        "Modern brand identity system built to be memorable, adaptable, and visually consistent across every touchpoint.",
+        "Jedes erfolgreiche Projekt beginnt mit einer klaren Strategie. Wir analysieren deine Zielgruppe, den Wettbewerb und deinen Markt, um deine Marke unverwechselbar zu positionieren. Gemeinsam definieren wir Werte, Vision und Mission - als solides Fundament für alle weiteren Schritte. So entsteht eine Marke mit Profil, die bei den richtigen Menschen ankommt.",
       icon: ResearchStrategyCircles,
     },
     {
@@ -70,7 +70,7 @@ export const services: Services = {
         "Barrierefreiheit",
       ],
       description:
-        "Modern brand identity system built to be memorable, adaptable, and visually consistent across every touchpoint.",
+        "Aus Strategie wird Gestalt. Wir entwickeln deine visuelle Identität mit stimmigem Corporate Design, Wireframes und Prototypen - bevor eine Zeile Code geschrieben wird. Dabei denken wir Conversion Rate Optimierung und Barrierefreiheit nach WCAG 2.2 von Anfang an mit. Das Ergebnis: eine Marke, die begeistert, verkauft und wirklich alle erreicht.",
       icon: ResearchStrategyCircles,
     },
     {
@@ -84,7 +84,7 @@ export const services: Services = {
         "KI-Lösungen",
       ],
       description:
-        "Modern brand identity system built to be memorable, adaptable, and visually consistent across every touchpoint.",
+        "Jetzt wird geliefert. Wir übernehmen Deployment und Hosting auf sicheren, klimafreundlichen Servern in Deutschland - inklusive Monitoring und Wartung. Ob performante Shop-Entwicklung, SEO/SEA für mehr Sichtbarkeit oder smarte KI-Lösungen zur Automatisierung: Wir setzen deine digitale Vision technisch sauber um und halten sie langfristig am Laufen.",
       icon: ResearchStrategyCircles,
     },
   ],
@@ -98,7 +98,7 @@ export const process: Process = {
 
 export const mission: Mission = {
   title: "Unsere Mission",
-  body: `Wir unterstützen kleine und mittelständische Unternehmen dabei, <span class="text-dark switzer-italic">zukunftssicher</span> zu <span class="text-dark switzer-italic">wachsen</span>. Mit klarer Haltung, verantwortungsvollem Denken und <span class="text-dark switzer-italic">barrierefreien Lösungen</span> verbinden wir wirtschaftlichen Erfolg mit gesellschaftlichem Mehrwert. Für <span class="text-dark switzer-italic">langfristige Wirkung</span> und echten Fortschritt - <span class="text-dark switzer-italic">heute und morgen</span>.`,
+  body: `Wir unterstützen kleine und mittelständische Unternehmen dabei, <span class="text-dark font-heading font-medium italic">zukunftssicher</span> zu <span class="text-dark font-heading font-medium italic">wachsen</span>. Mit klarer Haltung, verantwortungsvollem Denken und <span class="text-dark font-heading font-medium italic">barrierefreien Lösungen</span> verbinden wir wirtschaftlichen Erfolg mit gesellschaftlichem Mehrwert. Für <span class="text-dark font-heading font-medium italic">langfristige Wirkung</span> und echten Fortschritt - <span class="text-dark font-heading font-medium italic">heute und morgen</span>.`,
 };
 
 export const principles: Principles = {
@@ -108,7 +108,7 @@ export const principles: Principles = {
       id: "sustainable",
       title: "Nachhaltig",
       description:
-        "We integrate environmentally friendly practices and materials into our projects, ensuring that our designs are not only beautiful and functional but also responsible and sustainable.",
+        "Nachhaltigkeit ist für uns mehr als ein Konzept - sie prägt, wie wir denken, gestalten und entwickeln. Für Lösungen, die begeistern und Verantwortung übernehmen.",
       image: sustainableImage,
       imageAlt: "Wind turbine rising above green trees under a cloudy blue sky",
     },
@@ -116,7 +116,7 @@ export const principles: Principles = {
       id: "barrier-free",
       title: "Barrierefrei",
       description:
-        "We integrate environmentally friendly practices and materials into our projects, ensuring that our designs are not only beautiful and functional but also responsible and sustainable.",
+        "WCAG-konform, BFSG-ready und inklusiv gestaltet - damit deine Website wirklich jeden erreicht.",
       image: barrierFreeImage,
       imageAlt:
         "Transparent circular glass elements suspended indoors with a blurred person in the background",
@@ -126,7 +126,7 @@ export const principles: Principles = {
       id: "together",
       title: "Gemeinsam",
       description:
-        "We integrate environmentally friendly practices and materials into our projects, ensuring that our designs are not only beautiful and functional but also responsible and sustainable.",
+        "Keine Agentur-Floskeln, sondern echte Zusammenarbeit. Von der ersten Idee bis zum Launch - weil erfolgreiche digitale Projekte gemeinsam entstehen.",
       image: togetherImage,
       imageAlt:
         "Metal sculpture of two human figures standing in the water on a misty river in Berlin",

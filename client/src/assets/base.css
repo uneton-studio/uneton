@@ -11,14 +11,14 @@
   --color-dark-mute: #002a2e;
 
   --color-purple: #d4c9f0;
+
+  --font-heading: "Switzer", sans-serif;
+  --font-body: "General Sans", sans-serif;
 }
 
 :root {
   --color-background: var(--color-dark-soft);
   --color-text: var(--color-light);
-
-  --font-heading: Switzer-Regular, sans-serif;
-  --font-body: GeneralSans-Regular, sans-serif;
 }
 
 @layer base {
@@ -75,25 +75,4 @@
   select {
     font: inherit;
   }
-}
-
-body .switzer-light {
-  font-family: Switzer-Light, sans-serif;
-  font-style: normal;
-}
-
-body .switzer-regular {
-  font-family: Switzer-Regular, sans-serif;
-  font-weight: 400 !important;
-  font-style: normal;
-}
-
-body .switzer-italic {
-  font-family: Switzer-MediumItalic, sans-serif;
-  font-style: italic;
-}
-
-body .switzer-medium {
-  font-family: Switzer-Medium, sans-serif;
-  font-style: normal;
 }

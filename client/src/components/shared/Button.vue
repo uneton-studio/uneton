@@ -53,13 +53,13 @@ const variantClass = computed(() => {
 });
 
 const sizeClass = computed(() => {
-  if (props.size === "sm") return "text-sm px-4 py-2";
-  if (props.size === "lg") return "text-lg px-6 py-3";
+  if (props.size === "sm") return "text-xs md:text-sm px-5 py-3 min-w-28";
+  if (props.size === "lg") return "text-lg px-5 py-3";
   return "text-base px-5 py-2.5";
 });
 
 const buttonClasses = computed(() => [
-  "inline-flex items-center justify-center rounded-full transition",
+  "inline-flex items-center justify-center rounded-full font-medium md:font-normal transition",
   variantClass.value,
   sizeClass.value,
   props.disabled ? "opacity-50 pointer-events-none" : "",

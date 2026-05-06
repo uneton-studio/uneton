@@ -22,10 +22,10 @@ const textClass = computed(() =>
 </script>
 
 <template>
-  <div class="section-header flex justify-between pt-[5rem] md:pt-[11.25rem]">
+  <div class="section-header flex justify-between pt-20 md:pt-45">
     <div>
       <h2
-        class="text-[1.75rem] leading-[2.125rem] md:text-[6rem] md:leading-[6.5rem]"
+        class="text-[1.75rem] leading-8 md:text-8xl md:leading-24 font-medium md:font-normal"
         :id="headingId"
         :class="textClass"
         v-html="title"
@@ -33,13 +33,13 @@ const textClass = computed(() =>
 
       <p
         v-if="description"
-        class="text-[0.875rem] leading-6 md:text-[1.375rem] md:leading-8 mt-[2rem] max-w-[61rem]"
+        class="text-[0.875rem] leading-6 md:text-[1.375rem] md:leading-8 mt-2 md:mt-6 max-w-244"
         :class="textClass"
       >
         {{ description }}
       </p>
     </div>
 
-    <Dots :color="theme" class="mt-[0.75rem]" />
+    <Dots :color="theme" class="mt-4 hidden md:grid" />
   </div>
 </template>

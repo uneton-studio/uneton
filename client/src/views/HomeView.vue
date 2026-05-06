@@ -10,7 +10,7 @@ import Standards from "@/components/views/home/Standards.vue";
 </script>
 
 <template>
-  <main class="home-view">
+  <main class="home-view mt-40">
     <Hero />
     <Services />
     <Process />
@@ -21,9 +21,3 @@ import Standards from "@/components/views/home/Standards.vue";
     <Questions />
   </main>
 </template>
-
-<style scoped>
-main {
-  margin-top: 10rem;
-}
-</style>

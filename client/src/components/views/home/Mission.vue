@@ -6,7 +6,7 @@ import { mission } from "./data";
 <template>
   <section
     aria-labelledby="mission-title"
-    class="mission bg-light-soft pb-[17.25rem]"
+    class="mission bg-light-soft pb-20 md:pb-52"
   >
     <div class="container">
       <SectionHeader
@@ -14,10 +14,9 @@ import { mission } from "./data";
         heading-id="mission-title"
         theme="dark"
       ></SectionHeader>
-
       <p
         v-html="mission.body"
-        class="text-dark text-2xl leading-7 md:text-[2.625rem] md:leading-9 font-light mt-[7.5rem] max-w-[74rem]"
+        class="text-dark font-heading font-light text-base md:text-5xl leading-6 md:leading-17 mt-4 md:mt-30 max-w-296"
       ></p>
     </div>
   </section>

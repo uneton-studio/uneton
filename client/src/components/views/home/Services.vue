@@ -7,14 +7,14 @@ import { services } from "./data";
 <template>
   <section
     aria-labelledby="leistungen-title"
-    class="services bg-light-soft pb-[6.25rem]"
+    class="services bg-light-soft pb-25"
   >
     <div class="container">
       <SectionHeader
         :title="services.title"
         heading-id="leistungen-title"
         theme="dark"
-        class="mb-[2.5rem]"
+        class="mb-10"
       ></SectionHeader>
 
       <div v-if="services?.items?.length">

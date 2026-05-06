@@ -1,6 +1,6 @@
 <template>
   <div
-    class="grid content-start justify-start leading-none blink-dots"
+    class="grid content-start justify-start leading-none blinking-dots"
     :style="gridStyle"
     aria-hidden="true"
   >
@@ -33,7 +33,7 @@ const props = withDefaults(defineProps<Props>(), {
   rows: 3,
   cols: 10,
   size: 16,
-  gap: 8,
+  gap: 2,
   interval: 1000,
   minActive: 10,
   maxActive: 15,
@@ -49,7 +49,7 @@ const gridStyle = computed(() => ({
   gridTemplateColumns: `repeat(${props.cols}, ${props.size}px)`,
   gridTemplateRows: `repeat(${props.rows}, ${props.size}px)`,
   columnGap: `${props.gap}px`,
-  rowGap: "4px",
+  rowGap: "0",
   width: "fit-content",
 }));
 

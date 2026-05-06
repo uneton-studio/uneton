@@ -23,8 +23,8 @@ const textClass = computed(() =>
 
 <template>
   <article
-    class="service-row py-[5rem]"
-    :class="{ 'border-b': withBottomBorder }"
+    class="service-row py-20"
+    :class="{ 'border-b border-[#BEBEBE]': withBottomBorder }"
   >
     <div class="grid grid-cols-1 md:grid-cols-12 items-start">
       <div class="md:col-span-2">
@@ -33,7 +33,7 @@ const textClass = computed(() =>
 
       <div class="md:col-span-3">
         <h3
-          class="text-xl leading-[1.625rem] md:text-[3.375rem] md:leading-[3.75rem]"
+          class="text-xl leading-6.5 md:text-[3.375rem] md:leading-15"
           :class="textClass"
         >
           {{ title }}
@@ -41,11 +41,11 @@ const textClass = computed(() =>
       </div>
 
       <div class="md:col-span-3">
-        <ul class="space-y-[0.5rem]">
+        <ul class="space-y-2">
           <li
             v-for="item in items"
             :key="item"
-            class="text-[0.75rem] leading-[1.125rem] md:text-[1.125rem] md:leading-[1.75rem]"
+            class="text-[0.75rem] leading-4.5 md:text-[1.125rem] md:leading-7"
             :class="textClass"
           >
             {{ item }}
@@ -55,7 +55,7 @@ const textClass = computed(() =>
 
       <div class="md:col-span-4">
         <p
-          class="text-[0.75rem] leading-[1.125rem] md:text-[1.125rem] md:leading-[1.75rem]"
+          class="text-[0.75rem] leading-4.5 md:text-[1.125rem] md:leading-7"
           :class="textClass"
         >
           {{ description }}
