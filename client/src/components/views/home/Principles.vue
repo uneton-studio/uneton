@@ -14,19 +14,7 @@ import Slider from "@/components/shared/Slider.vue";
         theme="dark"
       ></SectionHeader>
 
-      <div class="hidden md:grid grid-cols-1 md:grid-cols-3 gap-5 mt-30 pb-50">
-        <div v-for="principle in principles.items" :key="principle.id">
-          <ImageWithText
-            :title="principle.title"
-            :description="principle.description"
-            :image="principle.image"
-            :imageAlt="principle.imageAlt"
-            :image-position="principle.imagePosition"
-          ></ImageWithText>
-        </div>
-      </div>
-
-      <div class="block md:hidden mt-10">
+      <div class="mt-10 lg:mt-30 pb-50">
         <Slider aria-label="Principles slider" button-background="light-soft">
           <div
             v-for="principle in principles.items"

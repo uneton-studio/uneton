@@ -57,7 +57,7 @@ export const services: Services = {
       ],
       description:
         "Jedes erfolgreiche Projekt beginnt mit einer klaren Strategie. Wir analysieren deine Zielgruppe, den Wettbewerb und deinen Markt, um deine Marke unverwechselbar zu positionieren. Gemeinsam definieren wir Werte, Vision und Mission - als solides Fundament für alle weiteren Schritte. So entsteht eine Marke mit Profil, die bei den richtigen Menschen ankommt.",
-      icon: ResearchStrategyCircles,
+      icon: LockIcon,
     },
     {
       id: "concept-branding",
@@ -71,7 +71,7 @@ export const services: Services = {
       ],
       description:
         "Aus Strategie wird Gestalt. Wir entwickeln deine visuelle Identität mit stimmigem Corporate Design, Wireframes und Prototypen - bevor eine Zeile Code geschrieben wird. Dabei denken wir Conversion Rate Optimierung und Barrierefreiheit nach WCAG 2.2 von Anfang an mit. Das Ergebnis: eine Marke, die begeistert, verkauft und wirklich alle erreicht.",
-      icon: ResearchStrategyCircles,
+      icon: LockIcon,
     },
     {
       id: "implementation-hosting",
@@ -85,7 +85,7 @@ export const services: Services = {
       ],
       description:
         "Jetzt wird geliefert. Wir übernehmen Deployment und Hosting auf sicheren, klimafreundlichen Servern in Deutschland - inklusive Monitoring und Wartung. Ob performante Shop-Entwicklung, SEO/SEA für mehr Sichtbarkeit oder smarte KI-Lösungen zur Automatisierung: Wir setzen deine digitale Vision technisch sauber um und halten sie langfristig am Laufen.",
-      icon: ResearchStrategyCircles,
+      icon: LockIcon,
     },
   ],
 };

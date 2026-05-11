@@ -14,7 +14,6 @@ import { services } from "./data";
         :title="services.title"
         heading-id="leistungen-title"
         theme="dark"
-        class="mb-10"
       ></SectionHeader>
 
       <div v-if="services?.items?.length">

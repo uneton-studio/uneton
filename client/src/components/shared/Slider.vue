@@ -37,13 +37,13 @@ const scroll = (direction: "prev" | "next") => {
   <section class="relative w-full" :aria-label="ariaLabel">
     <div
       ref="sliderRef"
-      class="no-scrollbar flex w-full snap-x snap-mandatory overflow-x-auto scroll-smooth"
+      class="no-scrollbar grid w-full auto-cols-[100%] grid-flow-col gap-5 overflow-x-auto scroll-smooth snap-x snap-mandatory md:auto-cols-[calc((100%-1rem)/2)] lg:grid-flow-row lg:auto-cols-auto lg:grid-cols-3 lg:overflow-visible lg:snap-none"
       tabindex="0"
     >
       <slot />
     </div>
 
-    <div class="mt-5 flex justify-end gap-3">
+    <div class="mt-5 flex justify-end gap-3 lg:hidden">
       <button
         type="button"
         class="flex size-10 items-center justify-center rounded-full transition-opacity focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-light"
@@ -74,6 +74,16 @@ const scroll = (direction: "prev" | "next") => {
 
 .no-scrollbar::-webkit-scrollbar {
   display: none;
+}
+
+:deep(*) {
+  scroll-snap-align: start;
+}
+
+@media (min-width: 1024px) {
+  :deep(*) {
+    scroll-snap-align: none;
+  }
 }
 
 .chevron {
