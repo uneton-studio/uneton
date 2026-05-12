@@ -15,7 +15,7 @@ import Slider from "@/components/shared/Slider.vue";
       ></SectionHeader>
 
       <div class="mt-10 lg:mt-30 pb-50">
-        <Slider aria-label="Principles slider" button-background="light-soft">
+        <Slider aria-label="Prinzipien Slider">
           <div
             v-for="principle in principles.items"
             :key="principle.id"

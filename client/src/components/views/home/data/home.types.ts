@@ -51,7 +51,8 @@ export type Hero = TextContent & WithButtons;
 export type ServiceItem = Identifiable & TextContent & ListContent & WithIcon;
 export type Services = Section<ServiceItem>;
 
-export type Process = TextContent;
+export type ProcessItem = Identifiable & TextContent;
+export type Process = Section<ProcessItem>;
 
 export type Mission = TextContent & BodyContent;
 

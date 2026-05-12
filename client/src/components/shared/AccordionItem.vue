@@ -35,11 +35,7 @@ const updateHeight = async () => {
 
   if (!contentRef.value) return;
 
-  if (isOpen.value) {
-    maxHeight.value = `${contentRef.value.scrollHeight}px`;
-  } else {
-    maxHeight.value = "0px";
-  }
+  maxHeight.value = isOpen.value ? `${contentRef.value.scrollHeight}px` : "0px";
 };
 
 const toggle = async () => {
@@ -49,31 +45,34 @@ const toggle = async () => {
 
 watch(isOpen, updateHeight);
 
-onMounted(() => {
-  updateHeight();
-});
+onMounted(updateHeight);
 </script>
 
 <template>
   <article
-    class="accordion-item-custom rounded-2xl overflow-hidden"
+    class="accordion-item-custom overflow-hidden rounded-2xl"
     :class="themeClass"
   >
     <button
       type="button"
-      class="cursor-pointer p-4 text-lg w-full border-0 flex items-center justify-between text-left"
-      :class="textClass + ' ' + themeClass"
+      class="flex w-full cursor-pointer items-center justify-between border-0 p-4 text-left text-lg"
+      :class="[textClass, themeClass]"
       :aria-expanded="isOpen"
       :aria-controls="panelId"
       @click="toggle"
     >
-      <span class="pr-3">
-        {{ title }}
-      </span>
+      <span class="pr-3" v-html="title"></span>
 
-      <span class="accordion-item-custom__icon shrink-0" aria-hidden="true">{{
-        isOpen ? "-" : "+"
-      }}</span>
+      <span
+        class="accordion-item-custom__icon shrink-0"
+        :class="{ 'is-open': isOpen }"
+        aria-hidden="true"
+      >
+        <span class="accordion-item-custom__line"></span>
+        <span
+          class="accordion-item-custom__line accordion-item-custom__line--vertical"
+        ></span>
+      </span>
     </button>
 
     <div
@@ -98,10 +97,29 @@ onMounted(() => {
 }
 
 .accordion-item-custom__icon {
-  font-size: 2rem;
-  line-height: 1;
+  position: relative;
+  display: flex;
   width: 2rem;
-  text-align: center;
+  height: 2rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.accordion-item-custom__line {
+  position: absolute;
+  width: 1rem;
+  height: 2px;
+  border-radius: 9999px;
+  background: currentColor;
+  transition: opacity 0.2s ease;
+}
+
+.accordion-item-custom__line--vertical {
+  transform: rotate(90deg);
+}
+
+.accordion-item-custom__icon.is-open .accordion-item-custom__line--vertical {
+  opacity: 0;
 }
 
 .accordion-item-custom__panel {

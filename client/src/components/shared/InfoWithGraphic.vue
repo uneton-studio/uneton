@@ -7,12 +7,10 @@ interface Props {
   items: string[];
   description: string;
   icon: Component;
-  withBottomBorder?: boolean;
   theme?: ThemeMode;
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  withBottomBorder: false,
   theme: "dark",
 });
 
@@ -22,38 +20,35 @@ const textClass = computed(() =>
 </script>
 
 <template>
-  <article
-    class="service-row py-20"
-    :class="{ 'border-b border-[#BEBEBE]': withBottomBorder }"
-  >
-    <div class="grid grid-cols-12 items-start gap-5">
-      <div class="col-span-2">
+  <article class="info-with-graphic pt-15">
+    <div>
+      <div>
         <component :is="icon" />
       </div>
 
-      <div class="col-span-3">
-        <h3 class="text-[3.375rem] leading-15" :class="textClass">
+      <div>
+        <h3 class="text-xl leading-6.5 mt-6 mb-2" :class="textClass">
           {{ title }}
         </h3>
       </div>
 
-      <div class="col-span-3">
+      <div>
+        <p class="text-sm leading-5.5 mb-6" :class="textClass">
+          {{ description }}
+        </p>
+      </div>
+
+      <div>
         <ul>
           <li
             v-for="item in items"
             :key="item"
-            class="text-base leading-8"
+            class="text-sm leading-4.5 py-3.5 first:border-t first:border-[#D9D9D9] border-b border-[#D9D9D9]"
             :class="textClass"
           >
             {{ item }}
           </li>
         </ul>
-      </div>
-
-      <div class="col-span-4">
-        <p class="text-base leading-6" :class="textClass">
-          {{ description }}
-        </p>
       </div>
     </div>
   </article>

@@ -1,4 +1,3 @@
-import ResearchStrategyCircles from "@/components/icons/ResearchStrategyCircles.vue";
 import BfsgIcon from "@/components/icons/BfsgIcon.vue";
 import CheckWebsiteIcon from "@/components/icons/CheckWebsiteIcon.vue";
 import sustainableImage from "../../../../assets/images/sustainable.webp";
@@ -23,6 +22,9 @@ import StarsCircleIcon from "@/components/icons/StarsCircleIcon.vue";
 import KeyIcon from "@/components/icons/KeyIcon.vue";
 import TurbineIcon from "@/components/icons/TurbineIcon.vue";
 import GlobeLargeIcon from "@/components/icons/GlobeLargeIcon.vue";
+import ResearchAndStrategyAnimation from "../animations/ResearchAndStrategyAnimation.vue";
+import ConceptionAndBrandingAnimation from "../animations/ConceptionAndBrandingAnimation.vue";
+import ImplementationAndHostingAnimation from "../animations/ImplementationAndHostingAnimation.vue";
 
 export const hero: Hero = {
   title: "Design Studio für zeitloses Webdesign",
@@ -57,7 +59,7 @@ export const services: Services = {
       ],
       description:
         "Jedes erfolgreiche Projekt beginnt mit einer klaren Strategie. Wir analysieren deine Zielgruppe, den Wettbewerb und deinen Markt, um deine Marke unverwechselbar zu positionieren. Gemeinsam definieren wir Werte, Vision und Mission - als solides Fundament für alle weiteren Schritte. So entsteht eine Marke mit Profil, die bei den richtigen Menschen ankommt.",
-      icon: LockIcon,
+      icon: ResearchAndStrategyAnimation,
     },
     {
       id: "concept-branding",
@@ -71,7 +73,7 @@ export const services: Services = {
       ],
       description:
         "Aus Strategie wird Gestalt. Wir entwickeln deine visuelle Identität mit stimmigem Corporate Design, Wireframes und Prototypen - bevor eine Zeile Code geschrieben wird. Dabei denken wir Conversion Rate Optimierung und Barrierefreiheit nach WCAG 2.2 von Anfang an mit. Das Ergebnis: eine Marke, die begeistert, verkauft und wirklich alle erreicht.",
-      icon: LockIcon,
+      icon: ConceptionAndBrandingAnimation,
     },
     {
       id: "implementation-hosting",
@@ -85,7 +87,7 @@ export const services: Services = {
       ],
       description:
         "Jetzt wird geliefert. Wir übernehmen Deployment und Hosting auf sicheren, klimafreundlichen Servern in Deutschland - inklusive Monitoring und Wartung. Ob performante Shop-Entwicklung, SEO/SEA für mehr Sichtbarkeit oder smarte KI-Lösungen zur Automatisierung: Wir setzen deine digitale Vision technisch sauber um und halten sie langfristig am Laufen.",
-      icon: LockIcon,
+      icon: ImplementationAndHostingAnimation,
     },
   ],
 };
@@ -93,7 +95,29 @@ export const services: Services = {
 export const process: Process = {
   title: "Wie wir arbeiten",
   description:
-    "Prototype: After ideating, the next step is to create a prototype of the most promising solution. This could be a physical or digital prototype, depending on the nature of the problem.",
+    "Corporate Design, UX/UI Design und Webentwicklung - ganzheitliche digitale Lösungen aus einer Hand.",
+  items: [
+    {
+      id: "discover",
+      title: "01.<br />Discover",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    },
+    {
+      id: "define",
+      title: "02.<br />Define",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    },
+    {
+      id: "develop",
+      title: "03.<br />Develop",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    },
+    {
+      id: "growth",
+      title: "04.<br />Growth",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    },
+  ],
 };
 
 export const mission: Mission = {

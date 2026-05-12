@@ -35,15 +35,17 @@ const scroll = (direction: "prev" | "next") => {
 
 <template>
   <section class="relative w-full" :aria-label="ariaLabel">
-    <div
-      ref="sliderRef"
-      class="no-scrollbar grid w-full auto-cols-[100%] grid-flow-col gap-5 overflow-x-auto scroll-smooth snap-x snap-mandatory md:auto-cols-[calc((100%-1rem)/2)] lg:grid-flow-row lg:auto-cols-auto lg:grid-cols-3 lg:overflow-visible lg:snap-none"
-      tabindex="0"
-    >
-      <slot />
+    <div class="slider-bleed">
+      <div
+        ref="sliderRef"
+        class="no-scrollbar grid w-full auto-cols-[100%] grid-flow-col overflow-x-auto scroll-smooth snap-x snap-mandatory sm:auto-cols-[50%] xl:grid-flow-row xl:auto-cols-auto xl:grid-cols-3 xl:overflow-visible xl:snap-none"
+        tabindex="0"
+      >
+        <slot />
+      </div>
     </div>
 
-    <div class="mt-5 flex justify-end gap-3 lg:hidden">
+    <div class="mt-10 flex justify-end gap-3 xl:hidden">
       <button
         type="button"
         class="flex size-10 items-center justify-center rounded-full transition-opacity focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-light"
@@ -51,7 +53,20 @@ const scroll = (direction: "prev" | "next") => {
         aria-label="Previous slide"
         @click="scroll('prev')"
       >
-        <span aria-hidden="true" class="chevron chevron-left" />
+        <svg
+          aria-hidden="true"
+          class="size-6"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M15 18L9 12L15 6"
+            stroke="black"
+            stroke-width="2"
+            stroke-linecap="round"
+          />
+        </svg>
       </button>
 
       <button
@@ -61,7 +76,20 @@ const scroll = (direction: "prev" | "next") => {
         aria-label="Next slide"
         @click="scroll('next')"
       >
-        <span aria-hidden="true" class="chevron chevron-right" />
+        <svg
+          aria-hidden="true"
+          class="size-6 rotate-180"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M15 18L9 12L15 6"
+            stroke="black"
+            stroke-width="2"
+            stroke-linecap="round"
+          />
+        </svg>
       </button>
     </div>
   </section>
@@ -76,28 +104,41 @@ const scroll = (direction: "prev" | "next") => {
   display: none;
 }
 
-:deep(*) {
-  scroll-snap-align: start;
+.slider-bleed {
+  margin-left: -1.25rem;
+  margin-right: -1.25rem;
 }
 
-@media (min-width: 1024px) {
-  :deep(*) {
-    scroll-snap-align: none;
+:deep(.slider-slide) {
+  width: 100%;
+  flex-shrink: 0;
+  scroll-snap-align: start;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+@media (min-width: 600px) {
+  .slider-bleed {
+    margin-left: -2rem;
+    margin-right: -2rem;
+  }
+
+  :deep(.slider-slide) {
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 }
 
-.chevron {
-  width: 10px;
-  height: 10px;
-  border-top: 2px solid #001b1e;
-  border-right: 2px solid #001b1e;
-}
+@media (min-width: 1280px) {
+  .slider-bleed {
+    margin-left: 0;
+    margin-right: 0;
+  }
 
-.chevron-left {
-  transform: rotate(-135deg);
-}
-
-.chevron-right {
-  transform: rotate(45deg);
+  :deep(.slider-slide) {
+    padding-left: 0;
+    padding-right: 0;
+    scroll-snap-align: none;
+  }
 }
 </style>
