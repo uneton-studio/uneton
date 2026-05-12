@@ -4,6 +4,7 @@ import { getImageSrc } from "@/utils/utils";
 import { computed, onBeforeUnmount, onMounted, ref } from "vue";
 import Button from "../shared/Button.vue";
 import DotsIcon from "../icons/DotsIcon.vue";
+import A11yWidget from "./A11yWidget.vue";
 
 const global = ref<Global | null>(null);
 const error = ref<string | null>(null);
@@ -61,7 +62,8 @@ onBeforeUnmount(() => {
           >
         </div>
 
-        <div class="hidden md:block">
+        <div class="hidden md:flex">
+          <A11yWidget class="me-4" />
           <Button
             v-for="btn in global.header.buttons"
             :key="btn.id"
