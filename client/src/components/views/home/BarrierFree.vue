@@ -15,7 +15,9 @@ import { barrierFree } from "./data";
         theme="light"
       ></SectionHeader>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 mt-[10.25rem] mb-[11.5rem]">
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2 gap-6 xl:gap-5 mt-10 sm:mt-14 xl:mt-42 mb-20 sm:mb-29 xl:mb-46"
+      >
         <div v-for="item in barrierFree.items" :key="item.id">
           <ActionCard
             :title="item.title"

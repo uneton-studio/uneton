@@ -32,13 +32,13 @@ const imageStyle = computed(() => ({
     <img
       :src="image"
       :alt="imageAlt"
-      class="aspect-99/89 w-full rounded-2xl object-cover"
+      class="aspect-99/89 w-full rounded-3xl object-cover"
       :style="imageStyle"
     />
 
-    <div class="mt-6 md:mt-15">
+    <div class="mt-6 sm:mt-8 xl:mt-15">
       <h3
-        class="text-2xl leading-6 md:text-[3.375rem] md:leading-12"
+        class="text-2xl leading-5 sm:text-3xl sm:leading-6 xl:text-[3.375rem] xl:leading-12"
         :class="textClass"
       >
         {{ title }}
@@ -46,7 +46,7 @@ const imageStyle = computed(() => ({
 
       <p
         v-if="description"
-        class="mt-2 text-xs leading-5 md:mt-4 md:text-xl md:leading-8"
+        class="text-xs leading-5 mt-2 xl:text-xl xl:leading-8 xl:mt-4"
         :class="textClass"
       >
         {{ description }}

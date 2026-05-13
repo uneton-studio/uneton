@@ -33,7 +33,7 @@ const textClass = computed(() =>
 
       <p
         v-if="description"
-        class="mt-2 max-w-100 text-sm leading-5.5 sm:mt-4 xl:mt-8 xl:text-xl xl:leading-7.5 xl:max-w-244"
+        class="mt-2 max-w-100 text-sm leading-5.5 sm:mt-4 xl:mt-6 xl:text-xl xl:leading-7.5 xl:max-w-244"
         :class="textClass"
       >
         {{ description }}

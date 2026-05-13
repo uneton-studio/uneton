@@ -38,14 +38,14 @@ const scroll = (direction: "prev" | "next") => {
     <div class="slider-bleed">
       <div
         ref="sliderRef"
-        class="no-scrollbar grid w-full auto-cols-[100%] grid-flow-col overflow-x-auto scroll-smooth snap-x snap-mandatory sm:auto-cols-[50%] xl:grid-flow-row xl:auto-cols-auto xl:grid-cols-3 xl:overflow-visible xl:snap-none"
+        class="no-scrollbar grid w-full auto-cols-[100%] grid-flow-col overflow-x-auto scroll-smooth snap-x snap-mandatory sm:auto-cols-[50%] xl:grid-flow-row xl:auto-cols-auto xl:grid-cols-3 xl:overflow-visible xl:snap-none xl:gap-5"
         tabindex="0"
       >
         <slot />
       </div>
     </div>
 
-    <div class="mt-10 flex justify-end gap-3 xl:hidden">
+    <div class="mt-10 flex justify-end gap-4 xl:hidden">
       <button
         type="button"
         class="flex size-10 items-center justify-center rounded-full transition-opacity focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-light"

@@ -26,14 +26,14 @@ const textClass = computed(() =>
 
 <template>
   <article
-    class="info-card rounded-2xl p-5 md:p-8 flex flex-col min-h-[34rem]"
+    class="info-card rounded-3xl p-6 xl:p-15 flex flex-col min-h-70 xl:min-h-136"
     :class="themeClass"
   >
     <header>
       <div v-if="icon">
         <component
           :is="icon"
-          class="info-card__icon block w-[5rem] h-[5rem]"
+          class="info-card__icon block w-10 h-10 xl:w-20 xl:h-20"
           aria-hidden="true"
         />
       </div>
@@ -41,7 +41,7 @@ const textClass = computed(() =>
 
     <div class="mt-auto">
       <h3
-        class="text-xl leading-[1.625rem] md:text-[3.375rem] md:leading-[3.75rem] mb-[1rem]"
+        class="text-2xl leading-6 mb-2 xl:text-[3.375rem] xl:leading-13 xl:mb-4"
         :class="textClass"
       >
         {{ title }}
@@ -49,7 +49,7 @@ const textClass = computed(() =>
 
       <p
         v-if="description"
-        class="text-[0.875rem] leading-6 md:text-[1.375rem] md:leading-8 mb-[1.5rem] max-w-[33rem]"
+        class="text-xs leading-4 max-w-132 mb-4 xl:text-xl xl:leading-7.5 xl:mb-6"
         :class="textClass"
       >
         {{ description }}

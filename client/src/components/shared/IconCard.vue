@@ -25,17 +25,20 @@ const textClass = computed(() =>
 </script>
 
 <template>
-  <article class="icon-card rounded-2xl p-5" :class="themeClass">
-    <div v-if="icon" class="mb-[1.5rem]">
+  <article
+    class="icon-card rounded-3xl xl:rounded-4xl px-6 py-6 sm:px-7 xl:px-9.5 xl:py-7"
+    :class="themeClass"
+  >
+    <div v-if="icon" class="mb-5 xl:mb-6">
       <component
         :is="icon"
-        class="block w-[3.125rem] h-[3.125rem]"
+        class="block w-10 h-10 xl:w-12.5 xl:h-12.5"
         aria-hidden="true"
       />
     </div>
 
     <p
-      class="text-base md:text-[1.25rem] leading-6 font-medium mb-[0.5rem]"
+      class="text-base leading-4.5 xl:text-xl xl:leading-6 mb-1.5 xl:mb-2 font-medium"
       :class="textClass"
     >
       {{ title }}
@@ -43,7 +46,7 @@ const textClass = computed(() =>
 
     <p
       v-if="description"
-      class="text-[0.875rem] leading-6 md:text-[1rem] md:leading-6"
+      class="text-xs leading-4 xl:text-sm xl:leading-6"
       :class="textClass"
     >
       {{ description }}

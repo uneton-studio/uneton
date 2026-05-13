@@ -168,7 +168,7 @@ export const barrierFree: BarrierFree = {
       id: "bfsg",
       title: "Bin ich vom BFSG betroffen?",
       description:
-        "We integrate environmentally friendly practices and materials into our projects.",
+        "Seit Juni 2025 gilt das BFSG für viele Unternehmen. Finde in wenigen Minuten heraus, ob auch du dazugehörst.",
       icon: BfsgIcon,
       buttons: [
         {
@@ -182,7 +182,7 @@ export const barrierFree: BarrierFree = {
       id: "check-website",
       title: "Website prüfen!",
       description:
-        "We integrate environmentally friendly practices and materials into our projects.",
+        "Jetzt Quick-Check starten und erfahren, wie barrierefrei deine Website wirklich ist.",
       icon: CheckWebsiteIcon,
       buttons: [
         {
@@ -203,50 +203,50 @@ export const standards: Standards = {
   card: {
     title: "Zukunftsorientiert",
     description:
-      "We integrate environmentally friendly practices and materials into our projects.",
+      "Wir entwickeln Websites, die heute überzeugen und morgen Maßstäbe setzen.",
     items: ["Nachhaltig", "Barrierefrei", "Zukunftssicher"],
     button: { label: "Projekt starten", href: "/", variant: "filled" },
   },
   items: [
     {
-      id: "dsgvo",
-      title: "DSGVO konform",
-      description: "Unser Server läuft mit grüner Energie",
-      icon: GlobeIcon,
-      theme: "dark",
-    },
-    {
-      id: "data-encryption",
-      title: "Datenverschlüsselung",
-      description: "Daten liegen auf deutsche Servern",
-      icon: LockIcon,
-      theme: "light",
-    },
-    {
       id: "server-in-germany",
       title: "Server in Deutschland",
-      description: "Unser Server läuft mit grüner Energie",
+      description: "100 % Hosting in Deutschland - sicher und schnell.",
       icon: ShieldCheckIcon,
       theme: "light",
     },
     {
+      id: "data-encryption",
+      title: "Datenverschlüsselung",
+      description: "Sicher gespeichert auf deutschen Servern.",
+      icon: LockIcon,
+      theme: "light",
+    },
+    {
+      id: "dsgvo",
+      title: "DSGVO konform",
+      description: "Rechtssicher nach europäischem Datenschutz.",
+      icon: GlobeIcon,
+      theme: "dark",
+    },
+    {
       id: "barrier-free",
       title: "Barrierefrei",
-      description: "Unser Server läuft mit grüner Energie",
+      description: "Nach WCAG 2.2 und BFSG - für wirklich alle.",
       icon: StarsCircleIcon,
       theme: "light",
     },
     {
       id: "ssl-encrypted",
       title: "SSL Verschlüsselt",
-      description: "Unser Server läuft mit grüner Energie",
+      description: "Geschützte Datenübertragung auf höchstem Niveau.s",
       icon: KeyIcon,
       theme: "light",
     },
     {
       id: "green-hosting",
       title: "Green Hosting",
-      description: "Unser Server läuft mit grüner Energie",
+      description: "100 % Ökostrom - klimafreundlich und nachhaltig.",
       icon: TurbineIcon,
       theme: "dark",
     },

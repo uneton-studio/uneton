@@ -14,12 +14,12 @@ import Slider from "@/components/shared/Slider.vue";
         theme="dark"
       ></SectionHeader>
 
-      <div class="mt-10 lg:mt-30 pb-50">
+      <div class="mt-10 sm:mt-10.5 xl:mt-30 pb-20 sm:pb-23 xl:pb-50">
         <Slider aria-label="Prinzipien Slider">
           <div
             v-for="principle in principles.items"
             :key="principle.id"
-            class="w-full shrink-0 snap-start"
+            class="slider-slide"
           >
             <ImageWithText
               :title="principle.title"

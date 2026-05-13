@@ -14,9 +14,9 @@ defineProps<Props>();
 </script>
 
 <template>
-  <article class="bg-light-soft rounded-2xl p-3 md:p-4 flex flex-col h-full">
+  <article class="bg-light-soft rounded-3xl xl:rounded-4xl p-6 flex flex-col">
     <header>
-      <h3 v-if="title" class="text-dark font-medium mb-[1rem]">
+      <h3 v-if="title" class="text-dark font-medium mb-4">
         {{ title }}
       </h3>
 
