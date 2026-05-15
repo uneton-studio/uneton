@@ -28,10 +28,10 @@ const themeClass = computed(() =>
 <template>
   <component
     :is="as"
-    class="text-pill text-base md:text-[1.25rem] leading-6 inline-flex items-center rounded-full px-4 py-2"
+    class="text-pill inline-flex items-center rounded-full text-sm leading-7 px-4.5 py-1.5 xl:text-xl xl:leading-9 xl:px-6 xl:py-2"
     :class="themeClass"
   >
-    <span :class="textClass" class="mr-[0.25rem]">{{ prefix }}</span>
+    <span :class="textClass" class="mr-1">{{ prefix }}</span>
     <span :class="textClass">{{ label }}</span>
   </component>
 </template>

@@ -6,6 +6,6 @@ export const ROUTE_NAMES = {
   HOME: "home",
 } as const;
 
-export type ThemeMode = "light" | "dark";
+export type ThemeMode = "light" | "dark" | "purple";
 
 export type ButtonVariant = "filled" | "outlined" | "link";

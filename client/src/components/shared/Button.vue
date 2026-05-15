@@ -2,7 +2,7 @@
 import type { ButtonVariant } from "@/app.constants";
 import { computed } from "vue";
 
-type ButtonColor = "white" | "black";
+type ButtonColor = "white" | "black" | "dark-mute";
 type ButtonSize = "sm" | "md" | "lg";
 type ButtonTag = "button" | "a" | "router-link";
 
@@ -36,20 +36,21 @@ const isRouterLink = computed(() => props.tag === "router-link");
 
 const variantClass = computed(() => {
   if (props.variant === "outlined") {
-    return props.color === "white"
-      ? "border border-white text-white bg-transparent"
-      : "border border-black text-black bg-transparent";
+    return `border border-${props.color} text-${props.color} bg-transparent`;
   }
 
   if (props.variant === "link") {
-    return props.color === "white"
-      ? "bg-transparent text-white underline"
-      : "bg-transparent text-black underline";
+    return `bg-transparent text-${props.color} underline`;
   }
 
-  return props.color === "white"
-    ? "bg-white text-black"
-    : "bg-black text-white";
+  switch (props.color) {
+    case "black":
+      return "bg-black text-white";
+    case "white":
+      return "bg-white text-black";
+    case "dark-mute":
+      return "bg-dark-mute text-white";
+  }
 });
 
 const sizeClass = computed(() => {

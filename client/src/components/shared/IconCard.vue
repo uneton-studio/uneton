@@ -15,9 +15,16 @@ const props = withDefaults(defineProps<Props>(), {
   theme: "light",
 });
 
-const themeClass = computed(() =>
-  props.theme === "dark" ? "bg-dark-mute" : "bg-light-soft",
-);
+const themeClass = computed(() => {
+  switch (props.theme) {
+    case "dark":
+      return "bg-dark-mute";
+    case "purple":
+      return "bg-purple";
+    default:
+      return "bg-light-soft";
+  }
+});
 
 const textClass = computed(() =>
   props.theme === "dark" ? "text-light" : "text-dark",

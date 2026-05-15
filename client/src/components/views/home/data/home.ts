@@ -220,7 +220,7 @@ export const standards: Standards = {
       title: "Datenverschlüsselung",
       description: "Sicher gespeichert auf deutschen Servern.",
       icon: LockIcon,
-      theme: "light",
+      theme: "purple",
     },
     {
       id: "dsgvo",
@@ -239,7 +239,7 @@ export const standards: Standards = {
     {
       id: "ssl-encrypted",
       title: "SSL Verschlüsselt",
-      description: "Geschützte Datenübertragung auf höchstem Niveau.s",
+      description: "Geschützte Datenübertragung auf höchstem Niveau.",
       icon: KeyIcon,
       theme: "light",
     },

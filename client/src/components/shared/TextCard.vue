@@ -14,15 +14,20 @@ defineProps<Props>();
 </script>
 
 <template>
-  <article class="bg-light-soft rounded-3xl xl:rounded-4xl p-6 flex flex-col">
+  <article
+    class="w-full bg-light-soft rounded-3xl xl:rounded-4xl p-6 flex flex-col"
+  >
     <header>
-      <h3 v-if="title" class="text-dark font-medium mb-4">
+      <h3
+        v-if="title"
+        class="text-dark font-medium text-2xl leading-4.5 mb-3 xl:text-[1.75rem] xl:leading-8 xl:mb-4"
+      >
         {{ title }}
       </h3>
 
       <p
         v-if="description"
-        class="text-[0.75rem] leading-[1.125rem] md:text-[1.125rem] md:leading-[1.75rem] text-dark mb-[1.5rem]"
+        class="text-dark text-xs leading-4.5 mb-5 xl:text-base xl:leading-6 xl:mb-6"
       >
         {{ description }}
       </p>
@@ -34,7 +39,7 @@ defineProps<Props>();
             prefix="+"
             theme="light"
             as="p"
-            class="mb-[0.5rem]"
+            class="mb-2 xl:mb-3"
           />
         </div>
       </div>
@@ -43,9 +48,8 @@ defineProps<Props>();
     <footer v-if="button" class="mt-auto">
       <Button
         :variant="button.variant"
-        color="black"
-        theme="dark"
-        class="mt-[1rem] w-full"
+        color="dark-mute"
+        class="w-full sm:w-auto sm:min-w-40 xl:min-w-50 mt-12 sm:mt-0"
       >
         {{ button.label }}
       </Button>
