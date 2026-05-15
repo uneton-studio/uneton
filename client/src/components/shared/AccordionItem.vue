@@ -22,12 +22,10 @@ const maxHeight = ref("0px");
 const generatedId = `accordion-content-${Math.random().toString(36).slice(2, 9)}`;
 const panelId = computed(() => props.contentId ?? generatedId);
 
-const themeClass = computed(() =>
-  props.theme === "light" ? "bg-light-soft" : "bg-dark-mute",
-);
-
-const textClass = computed(() =>
-  props.theme === "light" ? "text-dark" : "text-light",
+const cardClass = computed(() =>
+  props.theme === "light"
+    ? "bg-light-soft text-dark"
+    : "bg-dark-mute text-light",
 );
 
 const updateHeight = async () => {
@@ -49,81 +47,46 @@ onMounted(updateHeight);
 </script>
 
 <template>
-  <article
-    class="accordion-item-custom overflow-hidden rounded-2xl"
-    :class="themeClass"
-  >
-    <button
-      type="button"
-      class="flex w-full cursor-pointer items-center justify-between border-0 p-4 text-left text-lg"
-      :class="[textClass, themeClass]"
-      :aria-expanded="isOpen"
-      :aria-controls="panelId"
-      @click="toggle"
+  <div class="w-full">
+    <article
+      class="rounded-2xl transition-colors duration-200"
+      :class="cardClass"
     >
-      <span class="pr-3" v-html="title"></span>
-
-      <span
-        class="accordion-item-custom__icon shrink-0"
-        :class="{ 'is-open': isOpen }"
-        aria-hidden="true"
+      <button
+        type="button"
+        class="flex w-full cursor-pointer items-center justify-between p-4 text-left text-base leading-4.5 xl:text-xl xl:leading-4"
+        :aria-expanded="isOpen"
+        :aria-controls="panelId"
+        @click="toggle"
       >
-        <span class="accordion-item-custom__line"></span>
+        <span class="pr-3" v-html="title"></span>
+
         <span
-          class="accordion-item-custom__line accordion-item-custom__line--vertical"
-        ></span>
-      </span>
-    </button>
+          class="relative flex size-8 shrink-0 items-center justify-center"
+          aria-hidden="true"
+        >
+          <span class="absolute h-0.5 w-4 rounded-full bg-current"></span>
+
+          <span
+            class="absolute h-0.5 w-4 rounded-full bg-current transition-opacity duration-200"
+            :class="isOpen ? 'opacity-0' : 'rotate-90'"
+          ></span>
+        </span>
+      </button>
+    </article>
 
     <div
       :id="panelId"
-      class="accordion-item-custom__panel"
+      class="overflow-hidden transition-[max-height] duration-300"
       role="region"
       :aria-hidden="!isOpen"
       :style="{ maxHeight }"
     >
-      <div ref="contentRef">
-        <slot />
+      <div ref="contentRef" class="pt-4">
+        <div class="rounded-2xl p-4" :class="cardClass">
+          <slot />
+        </div>
       </div>
     </div>
-  </article>
+  </div>
 </template>
-
-<style scoped>
-.accordion-item-custom {
-  transition:
-    background-color 0.2s ease,
-    color 0.2s ease;
-}
-
-.accordion-item-custom__icon {
-  position: relative;
-  display: flex;
-  width: 2rem;
-  height: 2rem;
-  align-items: center;
-  justify-content: center;
-}
-
-.accordion-item-custom__line {
-  position: absolute;
-  width: 1rem;
-  height: 2px;
-  border-radius: 9999px;
-  background: currentColor;
-  transition: opacity 0.2s ease;
-}
-
-.accordion-item-custom__line--vertical {
-  transform: rotate(90deg);
-}
-
-.accordion-item-custom__icon.is-open .accordion-item-custom__line--vertical {
-  opacity: 0;
-}
-
-.accordion-item-custom__panel {
-  overflow: hidden;
-  transition: max-height 0.3s ease;
-}
-</style>

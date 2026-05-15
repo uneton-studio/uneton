@@ -25,9 +25,7 @@ import AccordionItem from "@/components/shared/AccordionItem.vue";
           :title="item.title"
           :class="index !== process.items.length - 1 ? 'mb-4' : ''"
         >
-          <p
-            class="text-[0.875rem] leading-6 md:text-[1rem] md:leading-6 px-4 pb-4"
-          >
+          <p class="text-base leading-6 italic">
             {{ item.description }}
           </p>
         </AccordionItem>

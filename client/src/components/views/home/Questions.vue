@@ -16,7 +16,7 @@ import AccordionItem from "@/components/shared/AccordionItem.vue";
       ></SectionHeader>
 
       <div
-        class="grid grid-cols-1 md:grid-cols-2 items-stretch mt-[7.5rem] pb-[14rem]"
+        class="grid grid-cols-1 xl:grid-cols-2 gap-5 items-stretch mt-9 xl:mt-30 pb-15 sm:pb-37 xl:pb-56"
       >
         <div v-if="questions.card" class="flex">
           <ActionCard
@@ -36,11 +36,9 @@ import AccordionItem from "@/components/shared/AccordionItem.vue";
             v-for="(item, index) in questions.items"
             :key="item.id"
             :title="item.title"
-            :class="index !== questions.items.length - 1 ? 'mb-[1rem]' : ''"
+            :class="index !== questions.items.length - 1 ? 'mb-4' : ''"
           >
-            <p
-              class="text-[0.875rem] leading-6 md:text-[1rem] md:leading-6 px-4 pb-4"
-            >
+            <p class="text-base leading-6 xl:text-xl xl:leading-7.5 italic">
               {{ item.description }}
             </p>
           </AccordionItem>
