@@ -9,6 +9,25 @@
       "type": "component",
       "component": "shared.link-block",
       "repeatable": true
+    },
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "logoSmall": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "copyright": {
+      "type": "component",
+      "component": "shared.copyright",
+      "repeatable": false
     }
   },
   "config": {}

@@ -62,8 +62,8 @@ onBeforeUnmount(() => {
           >
         </div>
 
-        <div class="hidden md:flex">
-          <A11yWidget class="me-4" />
+        <div class="hidden md:flex items-stretch gap-4">
+          <A11yWidget />
           <Button
             v-for="btn in global.header.buttons"
             :key="btn.id"

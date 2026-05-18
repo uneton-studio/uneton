@@ -18,7 +18,10 @@ export interface LayoutFooter extends Struct.ComponentSchema {
     displayName: 'Footer';
   };
   attributes: {
+    copyright: Schema.Attribute.Component<'shared.copyright', false>;
     linkBlocks: Schema.Attribute.Component<'shared.link-block', true>;
+    logo: Schema.Attribute.Media<'images'>;
+    logoSmall: Schema.Attribute.Media<'images'>;
   };
 }
 
@@ -42,6 +45,17 @@ export interface SharedButton extends Struct.ComponentSchema {
   attributes: {
     buttonType: Schema.Attribute.Enumeration<['primary', 'secondary']>;
     href: Schema.Attribute.String;
+    label: Schema.Attribute.String;
+  };
+}
+
+export interface SharedCopyright extends Struct.ComponentSchema {
+  collectionName: 'components_shared_copyrights';
+  info: {
+    displayName: 'copyright';
+  };
+  attributes: {
+    icon: Schema.Attribute.Media<'images'>;
     label: Schema.Attribute.String;
   };
 }
@@ -75,6 +89,7 @@ declare module '@strapi/strapi' {
       'layout.footer': LayoutFooter;
       'layout.header': LayoutHeader;
       'shared.button': SharedButton;
+      'shared.copyright': SharedCopyright;
       'shared.link': SharedLink;
       'shared.link-block': SharedLinkBlock;
     }

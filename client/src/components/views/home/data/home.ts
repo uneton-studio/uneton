@@ -258,7 +258,7 @@ export const questions: Questions = {
   card: {
     title: "Kostenloses Erstgespräch!",
     description:
-      "We integrate environmentally friendly practices and materials into our projects.",
+      "Erzähl uns in 30 Minuten von deiner Idee - wir geben dir eine ehrliche Einschätzung und erste konkrete Ansätze. Kostenfrei und unverbindlich.",
     button: { label: "Erstgespräch vereinbaren", href: "/", variant: "filled" },
     icon: GlobeLargeIcon,
   },

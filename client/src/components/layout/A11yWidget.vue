@@ -334,16 +334,9 @@ onBeforeUnmount(() => {
   justify-content: center;
   border: 2px solid #fff;
   border-radius: 9999px;
-  background: #fff;
-  color: #0a1f2e;
+  color: #fff;
   cursor: pointer;
   transition: all 0.2s ease;
-}
-
-.a11y-trigger:hover,
-.a11y-trigger:focus-visible {
-  outline: 3px solid #ffd700;
-  outline-offset: 2px;
 }
 
 .a11y-panel {
