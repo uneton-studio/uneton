@@ -47,7 +47,7 @@ onBeforeUnmount(() => {
           <img
             v-if="global.header.logo?.url"
             :src="logoSrc"
-            :alt="global.header.logo.alternativeText"
+            :alt="global.header.logo.alternativeText || ''"
             class="h-4.5 w-auto md:h-8"
           />
         </div>

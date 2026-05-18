@@ -22,6 +22,7 @@ export interface LayoutFooter extends Struct.ComponentSchema {
     linkBlocks: Schema.Attribute.Component<'shared.link-block', true>;
     logo: Schema.Attribute.Media<'images'>;
     logoSmall: Schema.Attribute.Media<'images'>;
+    newsletter: Schema.Attribute.Component<'shared.newsletter', false>;
   };
 }
 
@@ -52,7 +53,7 @@ export interface SharedButton extends Struct.ComponentSchema {
 export interface SharedCopyright extends Struct.ComponentSchema {
   collectionName: 'components_shared_copyrights';
   info: {
-    displayName: 'copyright';
+    displayName: 'Copyright';
   };
   attributes: {
     icon: Schema.Attribute.Media<'images'>;
@@ -82,6 +83,17 @@ export interface SharedLinkBlock extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedNewsletter extends Struct.ComponentSchema {
+  collectionName: 'components_shared_newsletters';
+  info: {
+    displayName: 'Newsletter';
+  };
+  attributes: {
+    button: Schema.Attribute.Component<'shared.button', false>;
+    label: Schema.Attribute.String;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
@@ -92,6 +104,7 @@ declare module '@strapi/strapi' {
       'shared.copyright': SharedCopyright;
       'shared.link': SharedLink;
       'shared.link-block': SharedLinkBlock;
+      'shared.newsletter': SharedNewsletter;
     }
   }
 }

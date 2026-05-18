@@ -27,6 +27,28 @@ export interface Global {
     }[];
   };
   footer: {
+    logo: {
+      url: string;
+      alternativeText: string;
+    };
+    logoSmall: {
+      url: string;
+    };
+    copyright: {
+      label: string;
+      icon: {
+        url: string;
+        alternativeText: string;
+      };
+    };
+    newsletter: {
+      label: string;
+      button: {
+        label: string;
+        href: string;
+        buttonType: string;
+      };
+    };
     linkBlocks: {
       id: number;
       label: string;

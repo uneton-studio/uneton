@@ -28,6 +28,24 @@ const populate = {
           },
         },
       },
+      logo: { fields: ["url", "alternativeText"] },
+      logoSmall: { fields: ["url"] },
+      copyright: {
+        fields: ["label"],
+        populate: {
+          icon: {
+            fields: ["url", "alternativeText"],
+          },
+        },
+      },
+      newsletter: {
+        fields: ["label"],
+        populate: {
+          button: {
+            fields: ["label", "href", "buttonType"],
+          },
+        },
+      },
     },
   },
 };

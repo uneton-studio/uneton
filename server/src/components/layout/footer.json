@@ -28,6 +28,11 @@
       "type": "component",
       "component": "shared.copyright",
       "repeatable": false
+    },
+    "newsletter": {
+      "type": "component",
+      "component": "shared.newsletter",
+      "repeatable": false
     }
   },
   "config": {}
