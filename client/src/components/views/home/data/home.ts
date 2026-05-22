@@ -100,22 +100,26 @@ export const process: Process = {
     {
       id: "discover",
       title: "01.<br />Discover",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      description:
+        "In der Discover-Phase analysieren wir Ihre Zielgruppe, den Wettbewerb und Ihre Unternehmensziele – datenbasiert und strategisch. Wir identifizieren digitale Chancen und legen den Grundstein für Lösungen, die messbar wirken. So entsteht ein klares Bild davon, wo Potenzial liegt und wie wir es gezielt nutzen.",
     },
     {
       id: "define",
       title: "02.<br />Define",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      description:
+        "In der Define-Phase übersetzen wir Erkenntnisse in eine klare digitale Strategie – mit Personas, User Journeys und einem strukturierten Anforderungsprofil. Wir definieren Projektziele, KPIs und den optimalen Technologie-Stack für Ihr Vorhaben. Diese Phase schafft die verbindliche Grundlage für effizientes Design und Entwicklung.",
     },
     {
       id: "develop",
       title: "03.<br />Develop",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      description:
+        "In der Develope-Phase entstehen performante, barrierefreie digitale Produkte – von UX/UI Design bis zur technischen Umsetzung aus einer Hand. Wir entwickeln skalierbare Weblösungen mit sauberem Code und optimierter Ladegeschwindigkeit für beste Core Web Vitals. Jedes Detail wird nutzerzentriert gestaltet und iterativ getestet.",
     },
     {
       id: "growth",
       title: "04.<br />Growth",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      description:
+        "In der Growth-Phase optimieren wir Ihre digitale Präsenz kontinuierlich für mehr Sichtbarkeit, Conversions und nachhaltiges Wachstum. Durch SEO, Analytics und A/B-Testing entwickeln wir datengetriebene Maßnahmen, die langfristig wirken. So wird Ihre Website zum leistungsstarken Vertriebskanal.",
     },
   ],
 };

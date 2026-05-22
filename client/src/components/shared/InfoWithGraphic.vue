@@ -22,12 +22,12 @@ const textClass = computed(() =>
 <template>
   <article class="info-with-graphic pt-15">
     <div>
-      <div>
+      <div class="flex items-center justify-center">
         <component :is="icon" />
       </div>
 
       <div>
-        <h3 class="text-xl leading-6.5 mt-6 mb-2" :class="textClass">
+        <h3 class="text-xl leading-6.5 mt-8 mb-2" :class="textClass">
           {{ title }}
         </h3>
       </div>

@@ -25,7 +25,7 @@ const textClass = computed(() =>
   <div class="section-header flex justify-between pt-20 sm:pt-25 xl:pt-45">
     <div>
       <h2
-        class="text-[1.75rem] leading-8 font-medium sm:text-[2.625rem] sm:leading-12 xl:text-8xl xl:leading-24 xl:font-normal"
+        class="text-[2rem] leading-8.5 font-medium sm:text-[2.625rem] sm:leading-12 xl:text-[5rem] xl:leading-22 xl:font-normal"
         :id="headingId"
         :class="textClass"
         v-html="title"

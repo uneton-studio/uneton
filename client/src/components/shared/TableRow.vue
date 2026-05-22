@@ -32,7 +32,7 @@ const textClass = computed(() =>
       </div>
 
       <div class="col-span-3">
-        <h3 class="text-[3.375rem] leading-15" :class="textClass">
+        <h3 class="text-5xl leading-12" :class="textClass">
           {{ title }}
         </h3>
       </div>
@@ -42,7 +42,7 @@ const textClass = computed(() =>
           <li
             v-for="item in items"
             :key="item"
-            class="text-base leading-8"
+            class="text-sm leading-7.5"
             :class="textClass"
           >
             {{ item }}
@@ -51,7 +51,7 @@ const textClass = computed(() =>
       </div>
 
       <div class="col-span-4">
-        <p class="text-base leading-6" :class="textClass">
+        <p class="text-sm leading-6" :class="textClass">
           {{ description }}
         </p>
       </div>
