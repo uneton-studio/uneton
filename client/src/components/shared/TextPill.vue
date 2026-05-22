@@ -28,7 +28,7 @@ const themeClass = computed(() =>
 <template>
   <component
     :is="as"
-    class="text-pill inline-flex items-center rounded-full text-sm leading-7 px-4.5 py-1.5 xl:text-xl xl:leading-9 xl:px-6 xl:py-2"
+    class="text-pill inline-flex items-center rounded-full text-sm leading-5 px-4.5 py-1.5 xl:px-6 xl:py-2"
     :class="themeClass"
   >
     <span :class="textClass" class="mr-1">{{ prefix }}</span>

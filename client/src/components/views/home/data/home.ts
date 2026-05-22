@@ -271,49 +271,49 @@ export const questions: Questions = {
       id: "expertise",
       title: "Welche Expertise bringt euer Team mit?",
       description:
-        "We integrate environmentally friendly practices and materials into our projects, ensuring that our designs are not only beautiful and functional but also responsible and sustainable.",
+        "Unser Team vereint Design, Entwicklung und Projektmanagement mit langjähriger Erfahrung.",
     },
     {
       id: "collaboration",
       title: "Wie startet die Zusammenarbeit nach Vertragsabschluss?",
       description:
-        "We integrate environmentally friendly practices and materials into our projects, ensuring that our designs are not only beautiful and functional but also responsible and sustainable.",
+        "Nach Vertragsabschluss beginnen wir mit einem Kick-off-Meeting, um Ziele und Prozesse abzustimmen.",
     },
     {
       id: "result",
       title: "Was passiert, wenn mir das Ergebnis nicht gefällt?",
       description:
-        "We integrate environmentally friendly practices and materials into our projects, ensuring that our designs are not only beautiful and functional but also responsible and sustainable.",
+        "Wir arbeiten iterativ mit Feedbackschleifen – so stellen wir sicher, dass du immer zufrieden bist.",
     },
     {
       id: "project-management",
       title: "Wie läuft das Projektmanagement ab?",
       description:
-        "We integrate environmentally friendly practices and materials into our projects, ensuring that our designs are not only beautiful and functional but also responsible and sustainable.",
+        "Wir nutzen agile Methoden und halten dich mit regelmäßigen Updates auf dem Laufenden.",
     },
     {
       id: "design-development",
       title: "Übernimmt euer Team sowohl Design als auch Entwicklung?",
       description:
-        "We integrate environmentally friendly practices and materials into our projects, ensuring that our designs are not only beautiful and functional but also responsible and sustainable.",
+        "Ja, wir decken sowohl das visuelle Design als auch die technische Umsetzung ab.",
     },
     {
       id: "communication",
       title: "Wie läuft die Kommunikation während des Projekts ab?",
       description:
-        "We integrate environmentally friendly practices and materials into our projects, ensuring that our designs are not only beautiful and functional but also responsible and sustainable.",
+        "Wir stehen über Slack, E-Mail oder Videocalls jederzeit in direktem Austausch.",
     },
     {
       id: "existing-designs",
       title: "Können bestehende Designs oder Projekte übernommen werden?",
       description:
-        "We integrate environmentally friendly practices and materials into our projects, ensuring that our designs are not only beautiful and functional but also responsible and sustainable.",
+        "Ja, wir können bestehende Projekte weiterentwickeln oder anpassen.",
     },
     {
       id: "tools",
       title: "Mit welchen Tools arbeitet ihr?",
       description:
-        "We integrate environmentally friendly practices and materials into our projects, ensuring that our designs are not only beautiful and functional but also responsible and sustainable.",
+        "Wir arbeiten mit Figma, VS Code, GitHub und modernen Frameworks wie React & Tailwind.",
     },
   ],
 };

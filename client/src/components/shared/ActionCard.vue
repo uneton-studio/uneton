@@ -41,7 +41,7 @@ const textClass = computed(() =>
 
     <div class="mt-auto">
       <h3
-        class="text-2xl leading-6 mb-2 xl:text-[3.375rem] xl:leading-13 xl:mb-4"
+        class="text-[1.375rem] sm:text-2xl leading-6 mb-2 xl:text-[2.625rem] xl:leading-13.5 xl:mb-4"
         :class="textClass"
       >
         {{ title }}
@@ -49,7 +49,7 @@ const textClass = computed(() =>
 
       <p
         v-if="description"
-        class="text-xs leading-4 max-w-132 mb-4 xl:text-xl xl:leading-7.5 xl:mb-6"
+        class="text-xs leading-4 max-w-132 mb-4 xl:text-lg xl:leading-7.5 xl:mb-6"
         :class="textClass"
       >
         {{ description }}

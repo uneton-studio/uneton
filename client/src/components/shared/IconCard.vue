@@ -45,7 +45,7 @@ const textClass = computed(() =>
     </div>
 
     <p
-      class="text-base leading-4.5 xl:text-xl xl:leading-6 mb-1.5 xl:mb-2 font-medium"
+      class="text-base leading-4.5 xl:text-lg xl:leading-5.5 mb-1.5 xl:mb-2 font-medium"
       :class="textClass"
     >
       {{ title }}

@@ -38,7 +38,7 @@ const imageStyle = computed(() => ({
 
     <div class="mt-6 sm:mt-8 xl:mt-15">
       <h3
-        class="text-2xl leading-5 sm:text-3xl sm:leading-6 xl:text-[3.375rem] xl:leading-12"
+        class="text-[1.6875rem] leading-6 sm:text-2xl sm:leading-5 xl:text-[2.625rem] xl:leading-12"
         :class="textClass"
       >
         {{ title }}
@@ -46,7 +46,7 @@ const imageStyle = computed(() => ({
 
       <p
         v-if="description"
-        class="text-xs leading-5 mt-2 xl:text-xl xl:leading-8 xl:mt-4"
+        class="text-xs leading-5 mt-2 xl:text-lg xl:leading-7.5 xl:mt-4"
         :class="textClass"
       >
         {{ description }}

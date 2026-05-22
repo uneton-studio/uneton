@@ -54,7 +54,7 @@ onMounted(updateHeight);
     >
       <button
         type="button"
-        class="flex w-full cursor-pointer items-center justify-between p-4 text-left text-base leading-4.5 xl:text-xl xl:leading-4"
+        class="flex w-full cursor-pointer items-center justify-between p-4 text-left text-base leading-4.5 xl:text-lg xl:leading-4"
         :aria-expanded="isOpen"
         :aria-controls="panelId"
         @click="toggle"
