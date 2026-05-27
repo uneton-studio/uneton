@@ -40,7 +40,7 @@ onBeforeUnmount(() => {
     <div class="px-4">
       <nav
         aria-label="Hauptnavigation"
-        class="mx-auto flex max-w-425 items-center justify-between rounded-full px-6 md:px-4 py-4 md:py-3 transition-all duration-300"
+        class="mx-auto flex max-w-425 w-4/5 sm:w-auto items-center justify-between rounded-full px-6 xl:px-4 py-4 xl:py-3 transition-all duration-300"
         :class="isScrolled ? 'bg-dark-mute shadow-md' : 'bg-transparent'"
       >
         <div class="flex items-center md:ps-3">
@@ -52,7 +52,7 @@ onBeforeUnmount(() => {
           />
         </div>
 
-        <div class="hidden md:flex gap-12">
+        <div class="hidden xl:flex gap-12">
           <RouterLink
             v-for="link in global.header.links"
             :key="link.id"
@@ -62,7 +62,7 @@ onBeforeUnmount(() => {
           >
         </div>
 
-        <div class="hidden md:flex items-stretch gap-4">
+        <div class="hidden xl:flex items-stretch gap-4">
           <A11yWidget />
           <Button
             v-for="btn in global.header.buttons"
@@ -75,7 +75,7 @@ onBeforeUnmount(() => {
           </Button>
         </div>
 
-        <div class="md:hidden">
+        <div class="xl:hidden">
           <DotsIcon />
         </div>
       </nav>

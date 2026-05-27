@@ -3,6 +3,7 @@ import type { ButtonVariant, ThemeMode } from "@/app.constants";
 
 export interface TextContent {
   title: string;
+  subtitle?: string;
   description?: string;
 }
 
@@ -46,7 +47,10 @@ export interface Section<T = never> extends TextContent {
   items?: T[];
 }
 
-export type Hero = TextContent & WithButtons;
+export type HeroItem = Identifiable &
+  TextContent &
+  WithIcon & { eyebrow: string };
+export type Hero = Section<HeroItem> & WithButtons;
 
 export type ServiceItem = Identifiable & TextContent & ListContent & WithIcon;
 export type Services = Section<ServiceItem>;

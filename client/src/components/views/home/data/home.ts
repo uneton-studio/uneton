@@ -27,7 +27,8 @@ import ConceptionAndBrandingAnimation from "../animations/ConceptionAndBrandingA
 import ImplementationAndHostingAnimation from "../animations/ImplementationAndHostingAnimation.vue";
 
 export const hero: Hero = {
-  title: "Design Studio für zeitloses Webdesign",
+  title: "Design Studio für ",
+  subtitle: "zeitloses Webdesign",
   description:
     "Wir bauen keine Websites für dich - wir bauen sie mit dir. Corporate steht bei uns für ganzheitliche digitale Lösungen aus einer Hand und echte Partnerschaft auf Augenhöhe.",
   buttons: [
@@ -40,6 +41,32 @@ export const hero: Hero = {
       label: "Projekt starten",
       href: "#contact",
       variant: "filled",
+    },
+  ],
+  items: [
+    {
+      id: "hero-sustainability",
+      title: "Nachhaltig",
+      subtitle: "100%",
+      description: "CO₂-neutral gehostet",
+      eyebrow: "100% Ökostrom",
+      icon: ResearchAndStrategyAnimation,
+    },
+    {
+      id: "hero-barrier-free",
+      title: "Barrierefrei",
+      subtitle: "+15%",
+      description: "mehr Reichweite durch Inklusion",
+      eyebrow: "AA · 100%",
+      icon: ConceptionAndBrandingAnimation,
+    },
+    {
+      id: "hero-mobile-first",
+      title: "Mobile first",
+      subtitle: "+30%",
+      description: "schneller als der Branchenschnitt",
+      eyebrow: "<1,2s",
+      icon: ImplementationAndHostingAnimation,
     },
   ],
 };
