@@ -4,6 +4,9 @@ import { questions } from "./data";
 import ActionCard from "@/components/shared/ActionCard.vue";
 import Button from "@/components/shared/Button.vue";
 import AccordionItem from "@/components/shared/AccordionItem.vue";
+import { ref } from "vue";
+
+const openItemId = ref<string | number | null>(null);
 </script>
 
 <template>
@@ -36,7 +39,9 @@ import AccordionItem from "@/components/shared/AccordionItem.vue";
             v-for="(item, index) in questions.items"
             :key="item.id"
             :title="item.title"
+            :is-open="openItemId === item.id"
             :class="index !== questions.items.length - 1 ? 'mb-4' : ''"
+            @toggle="openItemId = openItemId === item.id ? null : item.id"
           >
             <p class="text-base leading-6 xl:text-lg xl:leading-7 italic">
               {{ item.description }}

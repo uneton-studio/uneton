@@ -5,17 +5,20 @@ import { computed, nextTick, onMounted, ref, watch } from "vue";
 interface Props {
   title: string;
   theme?: ThemeMode;
-  initiallyOpen?: boolean;
+  isOpen?: boolean;
   contentId?: string;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   theme: "dark",
-  initiallyOpen: false,
+  isOpen: false,
   contentId: undefined,
 });
 
-const isOpen = ref(props.initiallyOpen);
+const emit = defineEmits<{
+  toggle: [];
+}>();
+
 const contentRef = ref<HTMLElement | null>(null);
 const maxHeight = ref("0px");
 
@@ -33,15 +36,14 @@ const updateHeight = async () => {
 
   if (!contentRef.value) return;
 
-  maxHeight.value = isOpen.value ? `${contentRef.value.scrollHeight}px` : "0px";
+  maxHeight.value = props.isOpen ? `${contentRef.value.scrollHeight}px` : "0px";
 };
 
-const toggle = async () => {
-  isOpen.value = !isOpen.value;
-  await updateHeight();
+const toggle = () => {
+  emit("toggle");
 };
 
-watch(isOpen, updateHeight);
+watch(() => props.isOpen, updateHeight);
 
 onMounted(updateHeight);
 </script>
