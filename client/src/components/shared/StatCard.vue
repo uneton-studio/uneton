@@ -11,7 +11,7 @@ defineProps<Props>();
 
 <template>
   <article
-    class="flex items-center justify-between min-h-37.5 w-full px-10 py-6 rounded-3xl bg-white/85 text-dark backdrop-blur-xs"
+    class="flex items-end justify-between min-h-37.5 w-full px-10 py-6 rounded-3xl bg-white/85 text-dark backdrop-blur-xs"
   >
     <div class="flex flex-col">
       <h3 class="font-heading text-lg font-semibold">
@@ -27,7 +27,7 @@ defineProps<Props>();
       </p>
     </div>
 
-    <div class="flex min-w-37.5 flex-col items-center justify-center">
+    <div class="flex flex-col items-center justify-center">
       <p v-if="eyebrow" class="font-heading text-xs font-medium">
         {{ eyebrow }}
       </p>

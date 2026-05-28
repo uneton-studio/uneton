@@ -25,6 +25,9 @@ import GlobeLargeIcon from "@/components/icons/GlobeLargeIcon.vue";
 import ResearchAndStrategyAnimation from "../animations/ResearchAndStrategyAnimation.vue";
 import ConceptionAndBrandingAnimation from "../animations/ConceptionAndBrandingAnimation.vue";
 import ImplementationAndHostingAnimation from "../animations/ImplementationAndHostingAnimation.vue";
+import ProgressGraphic from "@/components/graphics/ProgressGraphic.vue";
+import CurveProgressGraphic from "@/components/graphics/CurveProgressGraphic.vue";
+import CircleProgressGraphic from "@/components/graphics/CircleProgressGraphic.vue";
 
 export const hero: Hero = {
   title: "Design Studio für ",
@@ -50,7 +53,7 @@ export const hero: Hero = {
       subtitle: "100%",
       description: "CO₂-neutral gehostet",
       eyebrow: "100% Ökostrom",
-      icon: ResearchAndStrategyAnimation,
+      icon: ProgressGraphic,
     },
     {
       id: "hero-barrier-free",
@@ -58,7 +61,7 @@ export const hero: Hero = {
       subtitle: "+15%",
       description: "mehr Reichweite durch Inklusion",
       eyebrow: "AA · 100%",
-      icon: ConceptionAndBrandingAnimation,
+      icon: CurveProgressGraphic,
     },
     {
       id: "hero-mobile-first",
@@ -66,7 +69,7 @@ export const hero: Hero = {
       subtitle: "+30%",
       description: "schneller als der Branchenschnitt",
       eyebrow: "<1,2s",
-      icon: ImplementationAndHostingAnimation,
+      icon: CircleProgressGraphic,
     },
   ],
 };
