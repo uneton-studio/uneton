@@ -7,7 +7,7 @@ import { hero } from "./data";
   <div class="max-w-190">
     <h1
       id="hero-title"
-      class="mb-2 text-[2rem] leading-8.5 font-medium sm:mb-4 sm:text-[2.625rem] sm:leading-12 xl:text-[5rem] xl:leading-21.5 xl:font-normal"
+      class="mb-2 text-[2rem] leading-8.5 font-medium sm:mb-4 sm:text-[2.625rem] sm:leading-12 xl:text-[5rem] xl:leading-21.5 xl:font-normal text-purple md:text-white"
     >
       {{ hero.title }}
       <span class="font-light italic">{{ hero.subtitle }}</span>
@@ -17,7 +17,7 @@ import { hero } from "./data";
       {{ hero.description }}
     </p>
 
-    <div class="flex gap-5 max-[430px]:flex-col sm:justify-start">
+    <div class="flex gap-5 max-[430px]:flex-col sm:justify-start flex-wrap">
       <Button
         v-for="button in hero.buttons"
         :key="button.label"
