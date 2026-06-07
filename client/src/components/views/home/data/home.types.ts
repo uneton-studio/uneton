@@ -80,10 +80,7 @@ export type Standards = Section<StandardItem> &
   };
 
 export type QuestionItem = Identifiable & TextContent;
-export type QuestionExtraCard = TextContent &
-  WithIcon & {
-    button: CTAButton;
-  };
+export type QuestionExtraCard = TextContent & WithIcon & WithButtons;
 export type Questions = Section<QuestionItem> & {
   card?: QuestionExtraCard;
 };

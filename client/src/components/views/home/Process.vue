@@ -32,7 +32,7 @@ const openProcessItemId = ref<string | number | null>(null);
             openProcessItemId = openProcessItemId === item.id ? null : item.id
           "
         >
-          <p class="text-base leading-6 italic">
+          <p class="text-sm leading-5 italic">
             {{ item.description }}
           </p>
         </AccordionItem>

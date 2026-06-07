@@ -10,7 +10,7 @@ import Standards from "@/components/views/home/Standards.vue";
 </script>
 
 <template>
-  <main class="home-view mt-30 md:mt-0 xl:mt-40">
+  <main class="home-view xl:mt-40">
     <Hero />
     <Services />
     <Process />

@@ -293,7 +293,10 @@ export const questions: Questions = {
     title: "Kostenloses Erstgespräch!",
     description:
       "Erzähl uns in 30 Minuten von deiner Idee - wir geben dir eine ehrliche Einschätzung und erste konkrete Ansätze. Kostenfrei und unverbindlich.",
-    button: { label: "Erstgespräch vereinbaren", href: "/", variant: "filled" },
+    buttons: [
+      { label: "Projekt starten", href: "/", variant: "outlined" },
+      { label: "Erstgespräch vereinbaren", href: "/", variant: "filled" },
+    ],
     icon: GlobeLargeIcon,
   },
   items: [

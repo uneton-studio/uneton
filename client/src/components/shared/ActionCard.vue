@@ -55,7 +55,7 @@ const textClass = computed(() =>
         {{ description }}
       </p>
 
-      <footer v-if="$slots.default">
+      <footer v-if="$slots.default" class="flex gap-4">
         <slot />
       </footer>
     </div>

@@ -8,10 +8,10 @@ import HeroAnimation from "./animations/HeroAnimation.vue";
 <template>
   <section
     aria-labelledby="hero-title"
-    class="min-h-[70vh] md:min-h-auto xl:min-h-[70vh]"
+    class="min-h-screen flex flex-column items-center md:block md:min-h-auto xl:min-h-[70vh]"
   >
     <div
-      class="container hidden min-h-[70vh] md:min-h-auto xl:min-h-[70vh] items-end gap-20 2xl:gap-40 pb-22 xl:flex"
+      class="container hidden min-h-screen md:min-h-auto xl:min-h-[70vh] items-end gap-20 2xl:gap-40 pb-22 xl:flex"
     >
       <div class="min-w-0 flex-1">
         <HeroContent />
@@ -41,11 +41,11 @@ import HeroAnimation from "./animations/HeroAnimation.vue";
     </div>
 
     <div class="block md:items-center md:justify-center md:flex xl:hidden">
-      <div class="flex items-center justify-center md:hidden">
+      <div class="hidden items-center justify-center md:hidden">
         <HeroAnimation />
       </div>
-      <div class="w-1/2 container md:pt-20">
-        <HeroContent />
+      <div class="md:w-1/2 container md:pt-20">
+        <HeroContent class="mt-14 md:mt-0" />
       </div>
 
       <div class="w-1/2 hidden md:block">

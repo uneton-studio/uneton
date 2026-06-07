@@ -19,22 +19,43 @@ const openItemId = ref<string | number | null>(null);
       ></SectionHeader>
 
       <div
-        class="grid grid-cols-1 xl:grid-cols-2 gap-5 items-stretch mt-9 xl:mt-30 pb-15 sm:pb-37 xl:pb-56"
+        class="grid grid-cols-1 xl:grid-cols-2 gap-5 items-stretch xl:mt-30 pb-15 sm:pb-37 xl:pb-56"
       >
-        <div v-if="questions.card" class="flex">
+        <div v-if="questions.card" class="hidden xl:flex">
           <ActionCard
             :title="questions.card.title"
             :description="questions.card.description"
             :icon="questions.card.icon"
             class="w-full"
           >
-            <Button :variant="questions.card.button.variant" color="white">
-              {{ questions.card.button.label }}
+            <Button
+              v-for="button in questions.card.buttons"
+              :key="button.label"
+              :href="button.href"
+              :variant="button.variant"
+            >
+              {{ button.label }}
             </Button>
           </ActionCard>
         </div>
 
-        <div v-if="questions.items" class="flex flex-col">
+        <div v-if="questions.card" class="block xl:hidden">
+          <p class="mt-2 max-w-100 text-sm leading-5.5 sm:mt-4 mb-6">
+            {{ questions.card.description }}
+          </p>
+          <div class="flex gap-4 flex-wrap">
+            <Button
+              v-for="button in questions.card.buttons"
+              :key="button.label"
+              :href="button.href"
+              :variant="button.variant"
+            >
+              {{ button.label }}
+            </Button>
+          </div>
+        </div>
+
+        <div v-if="questions.items" class="flex flex-col mt-5 sm:mt-8 xl:mt-0">
           <AccordionItem
             v-for="(item, index) in questions.items"
             :key="item.id"
@@ -43,7 +64,9 @@ const openItemId = ref<string | number | null>(null);
             :class="index !== questions.items.length - 1 ? 'mb-4' : ''"
             @toggle="openItemId = openItemId === item.id ? null : item.id"
           >
-            <p class="text-base leading-6 xl:text-lg xl:leading-7 italic">
+            <p
+              class="text-sm leading-5 sm:text-base sm:leading-6 xl:text-lg xl:leading-7 italic"
+            >
               {{ item.description }}
             </p>
           </AccordionItem>

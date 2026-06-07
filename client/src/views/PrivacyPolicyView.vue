@@ -21,11 +21,11 @@ onMounted(async () => {
 </script>
 
 <template>
-  <main class="privacy-policy-view mt-30 md:mt-0 xl:mt-40">
+  <main class="privacy-policy-view">
     <section
       v-if="privacyPolicy"
       aria-labelledby="privacy-policy-title"
-      class="privacy-policy bg-light pt-30 pb-30 md:pt-40 xl:pt-50 xl:pb-60"
+      class="imprint bg-light pt-30 pb-30 md:pt-40 xl:pt-50 xl:pb-60"
     >
       <div class="container">
         <h1

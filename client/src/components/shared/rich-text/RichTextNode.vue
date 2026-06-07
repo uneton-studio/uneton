@@ -24,9 +24,9 @@ defineProps<{
     />
   </a>
 
-  <strong v-else-if="node.bold">
+  <span v-else-if="node.bold" class="font-medium">
     {{ node.text }}
-  </strong>
+  </span>
 
   <template v-else>
     {{ node.text }}

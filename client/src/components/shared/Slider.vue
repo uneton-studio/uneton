@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed, onBeforeUnmount, onMounted, ref } from "vue";
 
 type ButtonBackground = "light" | "light-soft";
 
@@ -15,6 +15,7 @@ const props = withDefaults(
 );
 
 const sliderRef = ref<HTMLElement | null>(null);
+const autoScrollInterval = ref<number | null>(null);
 
 const buttonClass = computed(() =>
   props.buttonBackground === "light" ? "bg-light" : "bg-light-soft",
@@ -31,6 +32,49 @@ const scroll = (direction: "prev" | "next") => {
     behavior: "smooth",
   });
 };
+
+const autoScroll = () => {
+  if (!sliderRef.value) return;
+
+  const slider = sliderRef.value;
+  const nextPosition = slider.scrollLeft + slider.clientWidth;
+  const maxScroll = slider.scrollWidth - slider.clientWidth;
+
+  if (nextPosition > maxScroll) {
+    slider.scrollTo({
+      left: 0,
+      behavior: "smooth",
+    });
+  } else {
+    slider.scrollTo({
+      left: nextPosition,
+      behavior: "smooth",
+    });
+  }
+};
+
+const startAutoScroll = () => {
+  stopAutoScroll();
+
+  autoScrollInterval.value = window.setInterval(() => {
+    autoScroll();
+  }, 4000);
+};
+
+const stopAutoScroll = () => {
+  if (!autoScrollInterval.value) return;
+
+  clearInterval(autoScrollInterval.value);
+  autoScrollInterval.value = null;
+};
+
+onMounted(() => {
+  startAutoScroll();
+});
+
+onBeforeUnmount(() => {
+  stopAutoScroll();
+});
 </script>
 
 <template>
@@ -40,6 +84,11 @@ const scroll = (direction: "prev" | "next") => {
         ref="sliderRef"
         class="no-scrollbar grid w-full auto-cols-[100%] grid-flow-col overflow-x-auto scroll-smooth snap-x snap-mandatory sm:auto-cols-[50%] xl:grid-flow-row xl:auto-cols-auto xl:grid-cols-3 xl:overflow-visible xl:snap-none xl:gap-5"
         tabindex="0"
+        @mouseenter="stopAutoScroll"
+        @mouseleave="startAutoScroll"
+        @focusin="stopAutoScroll"
+        @focusout="startAutoScroll"
+        @touchstart="stopAutoScroll"
       >
         <slot />
       </div>

@@ -57,7 +57,7 @@ onBeforeUnmount(() => {
     <div class="px-4">
       <nav
         aria-label="Hauptnavigation"
-        class="mx-auto flex max-w-425 w-4/5 sm:w-auto items-center justify-between rounded-full px-6 xl:px-4 py-4 xl:py-3 transition-all duration-300"
+        class="mx-auto flex max-w-425 w-[90%] sm:w-auto items-center justify-between rounded-full px-6 xl:px-4 py-5 xl:py-3 transition-all duration-300"
         :class="showBackground ? 'bg-dark-mute shadow-md' : 'bg-transparent'"
       >
         <div class="flex items-center md:ps-3">

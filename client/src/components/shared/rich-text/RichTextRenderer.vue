@@ -46,7 +46,7 @@ function isEmptyParagraph(block: StrapiRichTextBlock) {
       <component
         :is="block.format === 'ordered' ? 'ol' : 'ul'"
         v-else-if="block.type === 'list'"
-        class="mb-4 list-outside pl-6"
+        class="mb-1 list-outside pl-6"
         :class="block.format === 'ordered' ? 'list-decimal' : 'list-disc'"
       >
         <li
