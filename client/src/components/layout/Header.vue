@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { globalService, type Global } from "@/api/global/global.service";
 import { getImageSrc } from "@/utils/utils";
-import { computed, onBeforeUnmount, onMounted, ref } from "vue";
+import { computed, onBeforeUnmount, onMounted, ref, watch } from "vue";
 import { useRoute } from "vue-router";
 
 import Button from "../shared/Button.vue";
@@ -13,11 +13,12 @@ const route = useRoute();
 const global = ref<Global | null>(null);
 const error = ref<string | null>(null);
 const isScrolled = ref(false);
+const isMobileMenuOpen = ref(false);
 
 const isHomePage = computed(() => route.path === "/");
 
 const showBackground = computed(() => {
-  return !isHomePage.value || isScrolled.value;
+  return !isHomePage.value || isScrolled.value || isMobileMenuOpen.value;
 });
 
 const logoSrc = computed(() =>
@@ -27,6 +28,21 @@ const logoSrc = computed(() =>
 function updateHeaderBackground() {
   isScrolled.value = window.scrollY > 10;
 }
+
+function toggleMobileMenu() {
+  isMobileMenuOpen.value = !isMobileMenuOpen.value;
+}
+
+function closeMobileMenu() {
+  isMobileMenuOpen.value = false;
+}
+
+watch(
+  () => route.fullPath,
+  () => {
+    closeMobileMenu();
+  },
+);
 
 onMounted(async () => {
   if (isHomePage.value) {
@@ -57,11 +73,11 @@ onBeforeUnmount(() => {
     <div class="px-4">
       <nav
         aria-label="Hauptnavigation"
-        class="mx-auto flex max-w-425 w-[90%] sm:w-auto items-center justify-between rounded-full px-6 xl:px-4 py-5 xl:py-3 transition-all duration-300"
+        class="mx-auto flex max-w-425 w-[90%] items-center justify-between rounded-full px-6 py-5 transition-all duration-300 sm:w-auto xl:px-4 xl:py-3"
         :class="showBackground ? 'bg-dark-mute shadow-md' : 'bg-transparent'"
       >
         <div class="flex items-center md:ps-3">
-          <RouterLink to="/">
+          <RouterLink to="/" @click="closeMobileMenu">
             <img
               v-if="global.header.logo?.url"
               :src="logoSrc"
@@ -71,7 +87,7 @@ onBeforeUnmount(() => {
           </RouterLink>
         </div>
 
-        <div class="hidden xl:flex gap-12">
+        <div class="hidden gap-12 xl:flex">
           <RouterLink
             v-for="link in global.header.links"
             :key="link.id"
@@ -82,7 +98,7 @@ onBeforeUnmount(() => {
           </RouterLink>
         </div>
 
-        <div class="hidden xl:flex items-stretch gap-4">
+        <div class="hidden items-stretch gap-4 xl:flex">
           <A11yWidget />
 
           <Button
@@ -96,10 +112,47 @@ onBeforeUnmount(() => {
           </Button>
         </div>
 
-        <div class="xl:hidden">
-          <DotsIcon />
-        </div>
+        <button
+          type="button"
+          class="xl:hidden"
+          :aria-expanded="isMobileMenuOpen"
+          :aria-label="isMobileMenuOpen ? 'Menü schließen' : 'Menü öffnen'"
+          @click="toggleMobileMenu"
+        >
+          <DotsIcon :open="isMobileMenuOpen" />
+        </button>
       </nav>
+
+      <Transition name="mobile-menu">
+        <div
+          v-if="isMobileMenuOpen"
+          class="mx-auto mt-4 w-[90%] max-w-425 rounded-3xl bg-dark-mute p-2 xl:hidden"
+        >
+          <div class="flex flex-col items-center gap-7 pt-4">
+            <RouterLink
+              v-for="link in global.header.links"
+              :key="link.id"
+              :to="link.href"
+              class="text-light text-sm no-underline"
+              @click="closeMobileMenu"
+            >
+              {{ link.label }}
+            </RouterLink>
+          </div>
+
+          <Button
+            v-for="btn in global.header.buttons"
+            :key="btn.id"
+            :href="btn.href"
+            variant="filled"
+            color="white"
+            class="mt-5 w-full justify-cente h-12"
+            @click="closeMobileMenu"
+          >
+            {{ btn.label }}
+          </Button>
+        </div>
+      </Transition>
     </div>
   </header>
 
@@ -107,3 +160,18 @@ onBeforeUnmount(() => {
     {{ error }}
   </p>
 </template>
+
+<style scoped>
+.mobile-menu-enter-active,
+.mobile-menu-leave-active {
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+}
+
+.mobile-menu-enter-from,
+.mobile-menu-leave-to {
+  opacity: 0;
+  transform: translateY(-0.5rem);
+}
+</style>

@@ -1,14 +1,24 @@
+<script setup lang="ts">
+defineProps<{
+  open?: boolean;
+}>();
+</script>
+
 <template>
-  <svg
-    class="dots-icon"
-    width="23"
-    height="5"
-    viewBox="0 0 23 5"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <circle cx="2.5" cy="2.5" r="2.5" fill="white" />
-    <circle cx="11.5" cy="2.5" r="2.5" fill="white" />
-    <circle cx="20.5" cy="2.5" r="2.5" fill="white" />
-  </svg>
+  <div class="relative flex items-center gap-1" aria-hidden="true">
+    <span
+      class="size-1.25 rounded-full bg-white transition-all duration-300 ease-out"
+      :class="open ? 'translate-y-1.5 translate-x-1' : ''"
+    />
+
+    <span
+      class="size-1.25 rounded-full bg-white transition-all duration-300 ease-out"
+      :class="open ? 'scale-0 opacity-0' : ''"
+    />
+
+    <span
+      class="size-1.25 rounded-full bg-white transition-all duration-300 ease-out"
+      :class="open ? '-translate-y-1.5 -translate-x-1' : ''"
+    />
+  </div>
 </template>
