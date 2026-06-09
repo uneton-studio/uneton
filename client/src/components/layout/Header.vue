@@ -82,7 +82,7 @@ onBeforeUnmount(() => {
               v-if="global.header.logo?.url"
               :src="logoSrc"
               :alt="global.header.logo.alternativeText || ''"
-              class="h-4.5 w-auto md:h-8"
+              class="h-4.5 xl:h-7 w-auto"
             />
           </RouterLink>
         </div>
@@ -126,7 +126,7 @@ onBeforeUnmount(() => {
       <Transition name="mobile-menu">
         <div
           v-if="isMobileMenuOpen"
-          class="mx-auto mt-4 w-[90%] max-w-425 rounded-3xl bg-dark-mute p-2 xl:hidden"
+          class="mx-auto sm:ms-auto sm:me-0 mt-4 w-[90%] sm:max-w-100 rounded-3xl bg-dark-mute p-2 xl:hidden"
         >
           <div class="flex flex-col items-center gap-7 pt-4">
             <RouterLink
