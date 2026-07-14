@@ -1,11 +1,16 @@
 <script setup lang="ts">
+import type { DeepReadonly } from "vue";
+
+import type { ThemeMode } from "@/app.constants";
 import type { StrapiRichTextBlock } from "@/types/strapi.interface";
+
 import RichTextNode from "./RichTextNode.vue";
-import type { ThemeMode } from "@/app.constants.ts";
+
+type ReadonlyRichTextBlock = DeepReadonly<StrapiRichTextBlock>;
 
 withDefaults(
   defineProps<{
-    content: StrapiRichTextBlock[];
+    content: readonly ReadonlyRichTextBlock[];
     theme?: ThemeMode;
   }>(),
   {
@@ -13,11 +18,14 @@ withDefaults(
   },
 );
 
-function isEmptyParagraph(block: StrapiRichTextBlock) {
+function isEmptyParagraph(block: ReadonlyRichTextBlock): boolean {
   return (
     block.type === "paragraph" &&
     block.children.every((child) => {
-      if (child.type === "text") return child.text.trim() === "";
+      if (child.type === "text") {
+        return child.text.trim() === "";
+      }
+
       return false;
     })
   );

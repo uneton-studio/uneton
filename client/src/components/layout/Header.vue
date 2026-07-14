@@ -1,17 +1,15 @@
 <script setup lang="ts">
-import { globalService, type Global } from "@/api/global/global.service";
 import { getImageSrc } from "@/utils/utils";
 import { computed, onBeforeUnmount, onMounted, ref, watch } from "vue";
 import { useRoute } from "vue-router";
-
+import { useGlobalStore } from "@/stores/global.store";
 import Button from "../shared/Button.vue";
 import DotsIcon from "../icons/DotsIcon.vue";
 import A11yWidget from "./A11yWidget.vue";
 
 const route = useRoute();
+const { global } = useGlobalStore();
 
-const global = ref<Global | null>(null);
-const error = ref<string | null>(null);
 const isScrolled = ref(false);
 const isMobileMenuOpen = ref(false);
 
@@ -22,7 +20,7 @@ const showBackground = computed(() => {
 });
 
 const logoSrc = computed(() =>
-  getImageSrc(global.value?.header.logo?.url || ""),
+  getImageSrc(global.value?.header.logo?.url ?? ""),
 );
 
 function updateHeaderBackground() {
@@ -41,26 +39,16 @@ watch(
   () => route.fullPath,
   () => {
     closeMobileMenu();
+    updateHeaderBackground();
   },
 );
 
-onMounted(async () => {
-  if (isHomePage.value) {
-    window.addEventListener("scroll", updateHeaderBackground, {
-      passive: true,
-    });
+onMounted(() => {
+  window.addEventListener("scroll", updateHeaderBackground, {
+    passive: true,
+  });
 
-    updateHeaderBackground();
-  } else {
-    isScrolled.value = true;
-  }
-
-  try {
-    const res = await globalService.getGlobal();
-    global.value = res.data;
-  } catch (e) {
-    error.value = e instanceof Error ? e.message : "Failed to load";
-  }
+  updateHeaderBackground();
 });
 
 onBeforeUnmount(() => {
@@ -69,7 +57,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <header v-if="global" class="fixed top-0 z-50 w-full pt-5">
+  <header class="fixed top-0 z-50 w-full pt-5">
     <div class="px-4">
       <nav
         aria-label="Hauptnavigation"
@@ -79,9 +67,9 @@ onBeforeUnmount(() => {
         <div class="flex items-center md:ps-3">
           <RouterLink to="/" @click="closeMobileMenu">
             <img
-              v-if="global.header.logo?.url"
+              v-if="global?.header.logo?.url"
               :src="logoSrc"
-              :alt="global.header.logo.alternativeText || ''"
+              :alt="global?.header.logo?.alternativeText || ''"
               class="h-4.5 xl:h-7 w-auto"
             />
           </RouterLink>
@@ -89,7 +77,7 @@ onBeforeUnmount(() => {
 
         <div class="hidden gap-12 xl:flex">
           <RouterLink
-            v-for="link in global.header.links"
+            v-for="link in global?.header.links"
             :key="link.id"
             :to="link.href"
             class="text-light no-underline text-sm"
@@ -102,7 +90,7 @@ onBeforeUnmount(() => {
           <A11yWidget />
 
           <Button
-            v-for="btn in global.header.buttons"
+            v-for="btn in global?.header.buttons"
             :key="btn.id"
             :href="btn.href"
             variant="filled"
@@ -130,7 +118,7 @@ onBeforeUnmount(() => {
         >
           <div class="flex flex-col items-center gap-7 pt-4">
             <RouterLink
-              v-for="link in global.header.links"
+              v-for="link in global?.header.links"
               :key="link.id"
               :to="link.href"
               class="text-light text-sm no-underline"
@@ -141,12 +129,12 @@ onBeforeUnmount(() => {
           </div>
 
           <Button
-            v-for="btn in global.header.buttons"
+            v-for="btn in global?.header.buttons"
             :key="btn.id"
             :href="btn.href"
             variant="filled"
             color="white"
-            class="mt-5 w-full justify-cente h-12"
+            class="mt-5 w-full justify-center h-12"
             @click="closeMobileMenu"
           >
             {{ btn.label }}
@@ -155,10 +143,6 @@ onBeforeUnmount(() => {
       </Transition>
     </div>
   </header>
-
-  <p v-else-if="error" class="text-red-500">
-    {{ error }}
-  </p>
 </template>
 
 <style scoped>

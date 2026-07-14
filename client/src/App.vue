@@ -1,30 +1,57 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed, ref, watch } from "vue";
+
+import AppLoadingScreen from "./components/layout/AppLoadingScreen.vue";
 import Footer from "./components/layout/Footer.vue";
 import Header from "./components/layout/Header.vue";
+
+import { useGlobalStore } from "@/stores/global.store";
+import { usePageLoadingStore } from "@/stores/page-loading.store";
 
 const PASSWORD = import.meta.env.VITE_PREVIEW_PASSWORD;
 
 const input = ref("");
 const unlocked = ref(sessionStorage.getItem("preview-unlocked") === "true");
-const error = ref("");
+const passwordError = ref("");
+
+const { error: globalError, isInitialized, loadGlobal } = useGlobalStore();
+
+const { isPageLoading } = usePageLoadingStore();
 
 const isProtected = computed(() => Boolean(PASSWORD));
+
+const hasAccess = computed(() => {
+  return !isProtected.value || unlocked.value;
+});
 
 function unlock() {
   if (input.value === PASSWORD) {
     sessionStorage.setItem("preview-unlocked", "true");
+
     unlocked.value = true;
-    error.value = "";
+    passwordError.value = "";
+    input.value = "";
   } else {
-    error.value = "Wrong password";
+    passwordError.value = "Wrong password";
   }
 }
+
+watch(
+  hasAccess,
+  (hasAccessValue) => {
+    if (hasAccessValue) {
+      loadGlobal();
+    }
+  },
+  {
+    immediate: true,
+  },
+);
 </script>
 
 <template>
   <div
-    v-if="isProtected && !unlocked"
+    v-if="!hasAccess"
     class="fixed inset-0 z-9999 flex items-center justify-center bg-black px-6"
   >
     <form
@@ -48,15 +75,38 @@ function unlock() {
         Enter
       </button>
 
-      <p v-if="error" class="mt-4 text-sm text-red-400">
-        {{ error }}
+      <p v-if="passwordError" class="mt-4 text-sm text-red-400">
+        {{ passwordError }}
       </p>
     </form>
   </div>
 
-  <template v-else>
+  <AppLoadingScreen v-else-if="!isInitialized" />
+
+  <div
+    v-else-if="globalError"
+    class="flex min-h-screen items-center justify-center px-6"
+  >
+    <div class="max-w-md text-center">
+      <h1 class="text-2xl font-semibold">
+        Die Seite konnte nicht geladen werden
+      </h1>
+
+      <p class="mt-3 text-sm">
+        {{ globalError }}
+      </p>
+    </div>
+  </div>
+
+  <div v-else class="flex min-h-screen flex-col">
     <Header />
-    <RouterView />
-    <Footer />
-  </template>
+
+    <main class="relative flex-1">
+      <AppLoadingScreen v-if="isPageLoading" :fullscreen="false" />
+
+      <RouterView v-show="!isPageLoading" />
+    </main>
+
+    <Footer v-if="!isPageLoading" />
+  </div>
 </template>

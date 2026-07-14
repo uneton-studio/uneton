@@ -1,11 +1,15 @@
 <script setup lang="ts">
+import type { DeepReadonly } from "vue";
+
 import type {
   StrapiRichTextLink,
   StrapiRichTextNode,
 } from "@/types/strapi.interface";
 
+type RichTextNodeValue = StrapiRichTextNode | StrapiRichTextLink;
+
 defineProps<{
-  node: StrapiRichTextNode | StrapiRichTextLink;
+  node: DeepReadonly<RichTextNodeValue>;
 }>();
 </script>
 
