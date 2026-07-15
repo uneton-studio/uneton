@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { hero } from "./data";
-import StatCard from "@/components/shared/StatCard.vue";
 import HeroContent from "./HeroContent.vue";
 import HeroAnimation from "./animations/HeroAnimation.vue";
 </script>
@@ -24,19 +23,7 @@ import HeroAnimation from "./animations/HeroAnimation.vue";
           class="aspect-75/67 h-auto rounded-3xl object-cover xl:w-2xl 2xl:w-auto 2xl:max-w-204"
         />
 
-        <div class="absolute right-5 bottom-3">
-          <StatCard
-            v-for="item in hero.items"
-            :key="item.id"
-            :title="item.title"
-            :value="item.subtitle || ''"
-            :description="item.description || ''"
-            :eyebrow="item.eyebrow"
-            class="mb-2"
-          >
-            <component v-if="item.icon" :is="item.icon" aria-hidden="true" />
-          </StatCard>
-        </div>
+        <div class="absolute right-5 bottom-3"></div>
       </div>
     </div>
 
