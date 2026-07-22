@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import BarrierFree from "@/components/views/home/BarrierFree.vue";
-import Hero from "@/components/views/home/Hero.vue";
+import Hero from "@/components/views/home/hero/Hero.vue";
 import Mission from "@/components/views/home/Mission.vue";
 import Principles from "@/components/views/home/Principles.vue";
 import Process from "@/components/views/home/Process.vue";
@@ -10,7 +10,7 @@ import Standards from "@/components/views/home/Standards.vue";
 </script>
 
 <template>
-  <main class="home-view xl:mt-40">
+  <main class="home-view">
     <Hero />
     <Services />
     <Process />

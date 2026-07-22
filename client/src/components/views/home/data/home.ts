@@ -4,7 +4,6 @@ import sustainableImage from "../../../../assets/images/sustainable.webp";
 import barrierFreeImage from "../../../../assets/images/barrier-free.webp";
 import togetherImage from "../../../../assets/images/together.webp";
 import berlinCathedralImage from "../../../../assets/images/berlin-cathedral.webp";
-
 import type {
   Hero,
   Services,
@@ -25,6 +24,8 @@ import GlobeLargeIcon from "@/components/icons/GlobeLargeIcon.vue";
 import ResearchAndStrategyAnimation from "../animations/ResearchAndStrategyAnimation.vue";
 import ConceptionAndBrandingAnimation from "../animations/ConceptionAndBrandingAnimation.vue";
 import ImplementationAndHostingAnimation from "../animations/ImplementationAndHostingAnimation.vue";
+import LeafIcon from "@/components/icons/LeafIcon.vue";
+import BarrierFreeIcon from "@/components/icons/BarrierFreeIcon.vue";
 
 export const hero: Hero = {
   title: "Design Studio für ",
@@ -41,6 +42,26 @@ export const hero: Hero = {
       label: "Projekt starten",
       href: "#contact",
       variant: "filled",
+    },
+  ],
+  items: [
+    {
+      id: "co2-neutral-hosting",
+      title: "CO₂-neutral gehostet",
+      subtitle: "100% Ökotsrom",
+      icon: LeafIcon,
+    },
+    {
+      id: "barrier-free",
+      title: "Barrierefrei",
+      subtitle: "Mehr Reichweite durch Inklusion",
+      icon: BarrierFreeIcon,
+    },
+    {
+      id: "dsgvo-compliant",
+      title: "DSGVO konform",
+      subtitle: "Server in Deutschland",
+      icon: ShieldCheckIcon,
     },
   ],
 };

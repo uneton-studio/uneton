@@ -47,9 +47,7 @@ export interface Section<T = never> extends TextContent {
   items?: T[];
 }
 
-export type HeroItem = Identifiable &
-  TextContent &
-  WithIcon & { eyebrow: string };
+export type HeroItem = Identifiable & TextContent & WithIcon;
 export type Hero = Section<HeroItem> & WithButtons;
 
 export type ServiceItem = Identifiable & TextContent & ListContent & WithIcon;
