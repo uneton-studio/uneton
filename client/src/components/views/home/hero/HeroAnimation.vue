@@ -13,9 +13,9 @@ const props = withDefaults(
   }>(),
   {
     strokeColor: "#ffffff",
-    outerDotColor: "#dbb8ff",
-    middleDotColor: "#94e7d7",
-    innerDotColor: "#bee3ff",
+    outerDotColor: "#DBCBFC",
+    middleDotColor: "#A8E6D5",
+    innerDotColor: "#CAE6FD",
     outerDuration: 90,
     middleDuration: 70,
     innerDuration: 50,
@@ -47,23 +47,38 @@ const orbitStyles = computed(
       class="block h-full w-full overflow-visible"
       fill="none"
     >
-      <!-- Outer orbit -->
       <g class="orbit orbit--outer">
-        <circle cx="330" cy="330" r="270" class="orbit__circle" />
+        <circle
+          cx="330"
+          cy="330"
+          r="270"
+          pathLength="120"
+          class="orbit__circle"
+        />
 
         <circle cx="404" cy="70" r="18" fill="var(--outer-dot)" />
       </g>
 
-      <!-- Middle orbit -->
       <g class="orbit orbit--middle">
-        <circle cx="330" cy="330" r="205" class="orbit__circle" />
+        <circle
+          cx="330"
+          cy="330"
+          r="205"
+          pathLength="120"
+          class="orbit__circle"
+        />
 
         <circle cx="526" cy="270" r="16" fill="var(--middle-dot)" />
       </g>
 
-      <!-- Inner orbit -->
       <g class="orbit orbit--inner">
-        <circle cx="330" cy="330" r="140" class="orbit__circle" />
+        <circle
+          cx="330"
+          cy="330"
+          r="140"
+          pathLength="120"
+          class="orbit__circle"
+        />
 
         <circle cx="191" cy="349" r="15" fill="var(--inner-dot)" />
       </g>
@@ -81,7 +96,7 @@ const orbitStyles = computed(
 .orbit__circle {
   stroke: var(--orbit-stroke);
   stroke-width: 3;
-  stroke-dasharray: 18 21;
+  stroke-dasharray: 3 2;
   stroke-linecap: butt;
 }
 

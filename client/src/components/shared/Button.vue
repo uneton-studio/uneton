@@ -60,7 +60,7 @@ const sizeClass = computed(() => {
 });
 
 const buttonClasses = computed(() => [
-  "inline-flex items-center justify-center rounded-full font-medium md:font-normal transition",
+  "inline-flex items-center justify-center rounded-full font-medium md:font-normal transition cursor-pointer",
   variantClass.value,
   sizeClass.value,
   props.disabled ? "opacity-50 pointer-events-none" : "",

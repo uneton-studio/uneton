@@ -82,7 +82,7 @@ onBeforeUnmount(() => {
     </div>
 
     <div class="container md:hidden flex flex-col items-center justify-center">
-      <HeroAnimation class="max-w-80" />
+      <HeroAnimation class="max-w-85" />
       <HeroContent class="mt-11 mb-16" />
     </div>
     <div class="container bg-light md:hidden py-12.5">

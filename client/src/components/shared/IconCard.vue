@@ -40,6 +40,7 @@ const textClass = computed(() =>
       <component
         :is="icon"
         class="block w-10 h-10 xl:w-12.5 xl:h-12.5"
+        :class="textClass"
         aria-hidden="true"
       />
     </div>

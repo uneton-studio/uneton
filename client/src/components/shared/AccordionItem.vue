@@ -51,7 +51,7 @@ onMounted(updateHeight);
 <template>
   <div class="w-full">
     <article
-      class="rounded-2xl transition-colors duration-200"
+      class="accordion-card rounded-2xl transition-colors duration-200"
       :class="cardClass"
     >
       <button

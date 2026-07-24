@@ -1,5 +1,19 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, onMounted, ref } from "vue";
+import HumanIcon from "../icons/HumanIcon.vue";
+import EllipseEmptyIcon from "../icons/EllipseEmptyIcon.vue";
+import EllipseFilledIcon from "../icons/EllipseFilledIcon.vue";
+import EllipseHalfFilledIcon from "../icons/EllipseHalfFilledIcon.vue";
+import LinkIcon from "../icons/LinkIcon.vue";
+import HeadlineIcon from "../icons/HeadlineIcon.vue";
+import HideImageIcon from "../icons/HideImageIcon.vue";
+import FontBiggerIcon from "../icons/FontBiggerIcon.vue";
+import FontSmallerIcon from "../icons/FontSmallerIcon.vue";
+import FontIcon from "../icons/FontIcon.vue";
+import LetterSpacingIcon from "../icons/LetterSpacingIcon.vue";
+import LineHeightIcon from "../icons/LineHeightIcon.vue";
+import TextAlignIcon from "../icons/TextAlignIcon.vue";
+import Button from "../shared/Button.vue";
 
 type TextAlign = "default" | "left" | "center" | "right";
 type Contrast = "default" | "dark" | "light" | "high";
@@ -37,24 +51,40 @@ const settings = ref<A11ySettings>({ ...defaults });
 const panelId = `a11y-panel-${Math.random().toString(36).slice(2, 9)}`;
 
 const textButtons = [
-  { action: "fontSizeUp", icon: "A+", label: "Text größer" },
-  { action: "fontSizeDown", icon: "A−", label: "Text kleiner" },
-  { action: "readableFont", icon: "Tt", label: "Lesbare Schrift" },
-  { action: "textAlign", icon: "≡", label: "Textausrichtung" },
-  { action: "lineHeight", icon: "↕", label: "Zeilenhöhe" },
-  { action: "letterSpacing", icon: "↔", label: "Textabstand" },
+  { action: "fontSizeUp", icon: FontBiggerIcon, label: "Text vergrößern" },
+  { action: "fontSizeDown", icon: FontSmallerIcon, label: "Text verkleinern" },
+  { action: "readableFont", icon: FontIcon, label: "Leserlicher Text" },
+  { action: "textAlign", icon: TextAlignIcon, label: "Textausrichtung" },
+  { action: "lineHeight", icon: LineHeightIcon, label: "Zeilenabstand" },
+  { action: "letterSpacing", icon: LetterSpacingIcon, label: "Wortabstand" },
 ] as const;
 
 const contrastButtons = [
-  { action: "contrastDark", label: "Dunkler Kontrast", circle: "dark" },
-  { action: "contrastLight", label: "Heller Kontrast", circle: "light" },
-  { action: "contrastHigh", label: "Hoher Kontrast", circle: "high" },
+  {
+    action: "contrastLight",
+    label: "Heller Kontrast",
+    icon: EllipseEmptyIcon,
+  },
+  {
+    action: "contrastDark",
+    label: "Dunkler Kontrast",
+    icon: EllipseFilledIcon,
+  },
+  {
+    action: "contrastHigh",
+    label: "Hoher Kontrast",
+    icon: EllipseHalfFilledIcon,
+  },
 ] as const;
 
 const contentButtons = [
-  { action: "highlightLinks", icon: "🔗", label: "Links hervorheben" },
-  { action: "highlightTitles", icon: "H", label: "Titel hervorheben" },
-  { action: "hideImages", icon: "🖼", label: "Bilder ausblenden" },
+  { action: "highlightLinks", icon: LinkIcon, label: "Links hervorheben" },
+  {
+    action: "highlightTitles",
+    icon: HeadlineIcon,
+    label: "Überschriften hervorheben",
+  },
+  { action: "hideImages", icon: HideImageIcon, label: "Bilder ausblenden" },
 ] as const;
 
 const html = computed(() =>
@@ -229,141 +259,99 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div ref="wrapperRef" class="a11y-widget">
+  <div ref="wrapperRef" class="a11y-widget relative">
     <button
       type="button"
-      class="a11y-trigger"
+      class="a11y-trigger bg-light rounded-full cursor-pointer h-full aspect-square flex items-center justify-center z-10"
       :aria-expanded="isOpen"
       :aria-controls="panelId"
       aria-label="Barrierefreiheits-Menü öffnen"
       @click.stop="isOpen = !isOpen"
     >
-      <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true">
-        <circle cx="12" cy="4" r="2" fill="currentColor" />
-        <path
-          d="M19 8H5a1 1 0 0 0 0 2h5v3l-2.5 7a1 1 0 0 0 1.9.7L12 15l1.6 5.7a1 1 0 0 0 1.9-.7L13 13v-3h6a1 1 0 0 0 0-2z"
-          fill="currentColor"
-        />
-      </svg>
+      <HumanIcon class="text-[#0D3D45]" />
     </button>
 
     <div
       v-show="isOpen"
       :id="panelId"
-      class="a11y-panel"
+      class="a11y-panel absolute px-11 py-7 rounded-3xl"
       role="dialog"
       aria-label="Barrierefreiheits-Einstellungen"
     >
       <section class="a11y-section">
-        <h3 class="a11y-section-title">Text</h3>
+        <p class="font-heading text-xl font-medium text-dark mb-5">Text</p>
 
         <div class="a11y-grid">
           <button
             v-for="button in textButtons"
             :key="button.action"
             type="button"
-            class="a11y-card"
+            class="a11y-card flex flex-col items-center justify-center bg-light text-dark w-30 h-30 rounded-md cursor-pointer"
             :class="{ active: isActive(button.action) }"
             :aria-pressed="isActive(button.action)"
             @click="runAction(button.action)"
           >
-            <span class="a11y-icon">{{ button.icon }}</span>
-            <span class="a11y-label">{{ button.label }}</span>
+            <component :is="button.icon" aria-hidden="true" />
+            <span class="a11y-label font-heading text-xs font-medium mt-3.5">{{
+              button.label
+            }}</span>
           </button>
         </div>
       </section>
 
       <section class="a11y-section">
-        <h3 class="a11y-section-title">Kontrast</h3>
+        <p class="font-heading text-xl font-medium text-dark mb-5">Kontrast</p>
 
         <div class="a11y-grid">
           <button
             v-for="button in contrastButtons"
             :key="button.action"
             type="button"
-            class="a11y-card"
+            class="a11y-card flex flex-col items-center justify-center bg-light text-dark w-30 h-30 rounded-md cursor-pointer"
             :class="{ active: isActive(button.action) }"
             :aria-pressed="isActive(button.action)"
             @click="runAction(button.action)"
           >
-            <span
-              class="a11y-circle"
-              :class="`a11y-circle--${button.circle}`"
-            ></span>
-            <span class="a11y-label">{{ button.label }}</span>
+            <component :is="button.icon" aria-hidden="true" />
+            <span class="a11y-label font-heading text-xs font-medium mt-3.5">{{
+              button.label
+            }}</span>
           </button>
         </div>
       </section>
 
       <section class="a11y-section">
-        <h3 class="a11y-section-title">Inhalte</h3>
+        <p class="font-heading text-xl font-medium text-dark mb-5">Inhalte</p>
 
         <div class="a11y-grid">
           <button
             v-for="button in contentButtons"
             :key="button.action"
             type="button"
-            class="a11y-card"
+            class="a11y-card flex flex-col items-center justify-center bg-light text-dark w-30 h-30 rounded-md cursor-pointer"
             :class="{ active: isActive(button.action) }"
             :aria-pressed="isActive(button.action)"
             @click="runAction(button.action)"
           >
-            <span class="a11y-icon">{{ button.icon }}</span>
-            <span class="a11y-label">{{ button.label }}</span>
+            <component :is="button.icon" aria-hidden="true" />
+            <span class="a11y-label font-heading text-xs font-medium mt-3.5">{{
+              button.label
+            }}</span>
           </button>
         </div>
       </section>
 
-      <button type="button" class="a11y-reset" @click="reset">
-        Zurücksetzen
-      </button>
+      <Button @click="reset" class="w-100">Zurücksetzen</Button>
     </div>
   </div>
 </template>
 
 <style scoped>
-.a11y-widget {
-  position: relative;
-}
-
-.a11y-trigger {
-  display: inline-flex;
-  width: 44px;
-  height: 44px;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid #fff;
-  border-radius: 9999px;
-  color: #fff;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
 .a11y-panel {
-  position: absolute;
-  top: calc(100% + 12px);
+  top: calc(100% + 24px);
   right: 0;
   z-index: 9999;
-  width: min(340px, calc(100vw - 2rem));
-  max-height: 80vh;
-  overflow-y: auto;
-  padding: 20px;
-  border-radius: 20px;
-  background: #f5f1e8;
-  color: #0a1f2e;
-  box-shadow: 0 10px 40px rgb(0 0 0 / 25%);
-}
-
-.a11y-panel::before {
-  position: absolute;
-  top: -8px;
-  right: 14px;
-  width: 16px;
-  height: 16px;
-  border-radius: 2px;
-  background: #f5f1e8;
-  content: "";
-  transform: rotate(45deg);
+  background: #e3e5e6;
 }
 
 .a11y-section {
@@ -371,38 +359,10 @@ onBeforeUnmount(() => {
   margin-bottom: 18px;
 }
 
-.a11y-section-title {
-  margin: 0 0 12px;
-  color: #0a1f2e;
-  font-size: 15px;
-  font-weight: 600;
-  text-align: center;
-}
-
 .a11y-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
-}
-
-.a11y-card {
-  display: flex;
-  min-height: 88px;
-  cursor: pointer;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  border: 2px solid #fff;
-  border-radius: 14px;
-  background: #fff;
-  color: #0a1f2e;
-  font-family: inherit;
-  transition: all 0.15s ease;
-}
-
-.a11y-card:hover {
-  border-color: #0a1f2e;
 }
 
 .a11y-card:focus-visible {
@@ -414,64 +374,6 @@ onBeforeUnmount(() => {
   border-color: #0a1f2e;
   background: #0a1f2e;
   color: #fff;
-}
-
-.a11y-icon {
-  font-size: 22px;
-  font-weight: 700;
-  line-height: 1;
-}
-
-.a11y-label {
-  font-size: 11px;
-  font-weight: 500;
-  line-height: 1.2;
-  text-align: center;
-}
-
-.a11y-circle {
-  width: 20px;
-  height: 20px;
-  border: 2px solid #0a1f2e;
-  border-radius: 9999px;
-}
-
-.a11y-circle--dark {
-  background: #0a1f2e;
-}
-
-.a11y-circle--light {
-  background: #fff;
-}
-
-.a11y-circle--high {
-  background: linear-gradient(90deg, #0a1f2e 50%, #fff 50%);
-}
-
-.a11y-card.active .a11y-circle {
-  border-color: #fff;
-}
-
-.a11y-reset {
-  width: 100%;
-  margin-top: 4px;
-  padding: 10px;
-  cursor: pointer;
-  border: 2px solid #0a1f2e;
-  border-radius: 8px;
-  background: transparent;
-  color: #0a1f2e;
-  font-family: inherit;
-  font-size: 13px;
-  font-weight: 600;
-}
-
-.a11y-reset:hover,
-.a11y-reset:focus-visible {
-  background: #0a1f2e;
-  color: #fff;
-  outline: 3px solid #ffd700;
-  outline-offset: 2px;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -538,8 +440,17 @@ onBeforeUnmount(() => {
 
 .a11y-contrast-light h1,
 .a11y-contrast-light h2,
+.a11y-contrast-light h3,
+.a11y-contrast-light button,
 .a11y-contrast-light p {
   color: #000 !important;
+}
+
+.a11y-contrast-light article.info-card,
+.a11y-contrast-light article.icon-card,
+.a11y-contrast-light article.accordion-card,
+.a11y-contrast-light footer {
+  background: #f8f8f6 !important;
 }
 
 .a11y-contrast-light main a {
