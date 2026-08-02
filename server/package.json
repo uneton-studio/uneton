@@ -15,9 +15,9 @@
     "upgrade:dry": "npx @strapi/upgrade latest --dry"
   },
   "dependencies": {
-    "@strapi/plugin-cloud": "5.46.0",
-    "@strapi/plugin-users-permissions": "5.46.0",
-    "@strapi/strapi": "5.46.0",
+    "@strapi/plugin-cloud": "5.51.0",
+    "@strapi/plugin-users-permissions": "5.51.0",
+    "@strapi/strapi": "5.51.0",
     "better-sqlite3": "12.6.2",
     "mysql2": "^3.22.4",
     "react": "^18.0.0",
