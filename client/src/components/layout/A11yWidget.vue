@@ -3,8 +3,6 @@ import { computed, onBeforeUnmount, onMounted, ref } from "vue";
 import HumanIcon from "../icons/HumanIcon.vue";
 import EllipseEmptyIcon from "../icons/EllipseEmptyIcon.vue";
 import EllipseFilledIcon from "../icons/EllipseFilledIcon.vue";
-import EllipseHalfFilledIcon from "../icons/EllipseHalfFilledIcon.vue";
-import LinkIcon from "../icons/LinkIcon.vue";
 import HeadlineIcon from "../icons/HeadlineIcon.vue";
 import HideImageIcon from "../icons/HideImageIcon.vue";
 import FontBiggerIcon from "../icons/FontBiggerIcon.vue";
@@ -16,7 +14,7 @@ import TextAlignIcon from "../icons/TextAlignIcon.vue";
 import Button from "../shared/Button.vue";
 
 type TextAlign = "default" | "left" | "center" | "right";
-type Contrast = "default" | "dark" | "light" | "high";
+type Contrast = "default" | "dark" | "light";
 
 interface A11ySettings {
   fontSize: number;
@@ -25,7 +23,6 @@ interface A11ySettings {
   lineHeight: number;
   letterSpacing: number;
   contrast: Contrast;
-  highlightLinks: boolean;
   highlightTitles: boolean;
   hideImages: boolean;
 }
@@ -39,7 +36,6 @@ const defaults: A11ySettings = {
   lineHeight: 0,
   letterSpacing: 0,
   contrast: "default",
-  highlightLinks: false,
   highlightTitles: false,
   hideImages: false,
 };
@@ -51,12 +47,36 @@ const settings = ref<A11ySettings>({ ...defaults });
 const panelId = `a11y-panel-${Math.random().toString(36).slice(2, 9)}`;
 
 const textButtons = [
-  { action: "fontSizeUp", icon: FontBiggerIcon, label: "Text vergrößern" },
-  { action: "fontSizeDown", icon: FontSmallerIcon, label: "Text verkleinern" },
-  { action: "readableFont", icon: FontIcon, label: "Leserlicher Text" },
-  { action: "textAlign", icon: TextAlignIcon, label: "Textausrichtung" },
-  { action: "lineHeight", icon: LineHeightIcon, label: "Zeilenabstand" },
-  { action: "letterSpacing", icon: LetterSpacingIcon, label: "Wortabstand" },
+  {
+    action: "fontSizeUp",
+    icon: FontBiggerIcon,
+    label: "Text vergrößern",
+  },
+  {
+    action: "fontSizeDown",
+    icon: FontSmallerIcon,
+    label: "Text verkleinern",
+  },
+  {
+    action: "readableFont",
+    icon: FontIcon,
+    label: "Leserlicher Text",
+  },
+  {
+    action: "textAlign",
+    icon: TextAlignIcon,
+    label: "Textausrichtung",
+  },
+  {
+    action: "lineHeight",
+    icon: LineHeightIcon,
+    label: "Zeilenabstand",
+  },
+  {
+    action: "letterSpacing",
+    icon: LetterSpacingIcon,
+    label: "Wortabstand",
+  },
 ] as const;
 
 const contrastButtons = [
@@ -70,21 +90,19 @@ const contrastButtons = [
     label: "Dunkler Kontrast",
     icon: EllipseFilledIcon,
   },
-  {
-    action: "contrastHigh",
-    label: "Hoher Kontrast",
-    icon: EllipseHalfFilledIcon,
-  },
 ] as const;
 
 const contentButtons = [
-  { action: "highlightLinks", icon: LinkIcon, label: "Links hervorheben" },
   {
     action: "highlightTitles",
     icon: HeadlineIcon,
     label: "Überschriften hervorheben",
   },
-  { action: "hideImages", icon: HideImageIcon, label: "Bilder ausblenden" },
+  {
+    action: "hideImages",
+    icon: HideImageIcon,
+    label: "Bilder ausblenden",
+  },
 ] as const;
 
 const html = computed(() =>
@@ -97,12 +115,17 @@ const save = () => {
 
 const load = () => {
   const stored = localStorage.getItem(STORAGE_KEY);
+
   if (!stored) return;
 
-  settings.value = {
-    ...defaults,
-    ...JSON.parse(stored),
-  };
+  try {
+    settings.value = {
+      ...defaults,
+      ...JSON.parse(stored),
+    };
+  } catch {
+    settings.value = { ...defaults };
+  }
 };
 
 const applySettings = () => {
@@ -134,37 +157,37 @@ const applySettings = () => {
   }
 
   const lineHeights = ["", "1.5", "1.9", "2.3"];
+
   root.style.setProperty(
     "--a11y-line-height",
     lineHeights[settings.value.lineHeight] || "inherit",
   );
+
   root.classList.toggle("a11y-line-height", settings.value.lineHeight > 0);
 
   const letterSpacings = ["", "0.05em", "0.1em", "0.15em"];
+
   root.style.setProperty(
     "--a11y-letter-spacing",
     letterSpacings[settings.value.letterSpacing] || "normal",
   );
+
   root.classList.toggle(
     "a11y-letter-spacing",
     settings.value.letterSpacing > 0,
   );
 
-  root.classList.remove(
-    "a11y-contrast-dark",
-    "a11y-contrast-light",
-    "a11y-contrast-high",
-  );
+  root.classList.remove("a11y-contrast-dark", "a11y-contrast-light");
 
   if (settings.value.contrast !== "default") {
     root.classList.add(`a11y-contrast-${settings.value.contrast}`);
   }
 
-  root.classList.toggle("a11y-highlight-links", settings.value.highlightLinks);
   root.classList.toggle(
     "a11y-highlight-titles",
     settings.value.highlightTitles,
   );
+
   root.classList.toggle("a11y-hide-images", settings.value.hideImages);
 };
 
@@ -179,55 +202,100 @@ const reset = () => {
 };
 
 const isActive = (action: string) => {
-  const s = settings.value;
+  const currentSettings = settings.value;
 
-  if (action === "fontSizeUp") return s.fontSize > 0;
-  if (action === "fontSizeDown") return s.fontSize < 0;
-  if (action === "readableFont") return s.readableFont;
-  if (action === "textAlign") return s.textAlign !== "default";
-  if (action === "lineHeight") return s.lineHeight > 0;
-  if (action === "letterSpacing") return s.letterSpacing > 0;
-  if (action === "contrastDark") return s.contrast === "dark";
-  if (action === "contrastLight") return s.contrast === "light";
-  if (action === "contrastHigh") return s.contrast === "high";
-  if (action === "highlightLinks") return s.highlightLinks;
-  if (action === "highlightTitles") return s.highlightTitles;
-  if (action === "hideImages") return s.hideImages;
+  if (action === "fontSizeUp") {
+    return currentSettings.fontSize > 0;
+  }
+
+  if (action === "fontSizeDown") {
+    return currentSettings.fontSize < 0;
+  }
+
+  if (action === "readableFont") {
+    return currentSettings.readableFont;
+  }
+
+  if (action === "textAlign") {
+    return currentSettings.textAlign !== "default";
+  }
+
+  if (action === "lineHeight") {
+    return currentSettings.lineHeight > 0;
+  }
+
+  if (action === "letterSpacing") {
+    return currentSettings.letterSpacing > 0;
+  }
+
+  if (action === "contrastDark") {
+    return currentSettings.contrast === "dark";
+  }
+
+  if (action === "contrastLight") {
+    return currentSettings.contrast === "light";
+  }
+
+  if (action === "highlightTitles") {
+    return currentSettings.highlightTitles;
+  }
+
+  if (action === "hideImages") {
+    return currentSettings.hideImages;
+  }
 
   return false;
 };
 
 const runAction = (action: string) => {
-  const s = settings.value;
+  const currentSettings = settings.value;
 
-  if (action === "fontSizeUp" && s.fontSize < 3) s.fontSize++;
-  if (action === "fontSizeDown" && s.fontSize > -2) s.fontSize--;
-  if (action === "readableFont") s.readableFont = !s.readableFont;
+  if (action === "fontSizeUp" && currentSettings.fontSize < 3) {
+    currentSettings.fontSize++;
+  }
+
+  if (action === "fontSizeDown" && currentSettings.fontSize > -2) {
+    currentSettings.fontSize--;
+  }
+
+  if (action === "readableFont") {
+    currentSettings.readableFont = !currentSettings.readableFont;
+  }
 
   if (action === "textAlign") {
     const order: TextAlign[] = ["default", "left", "center", "right"];
-    s.textAlign =
-      order[(order.indexOf(s.textAlign) + 1) % order.length] ?? "default";
+
+    const currentIndex = order.indexOf(currentSettings.textAlign);
+
+    currentSettings.textAlign =
+      order[(currentIndex + 1) % order.length] ?? "default";
   }
 
-  if (action === "lineHeight") s.lineHeight = (s.lineHeight + 1) % 4;
-  if (action === "letterSpacing") s.letterSpacing = (s.letterSpacing + 1) % 4;
+  if (action === "lineHeight") {
+    currentSettings.lineHeight = (currentSettings.lineHeight + 1) % 4;
+  }
+
+  if (action === "letterSpacing") {
+    currentSettings.letterSpacing = (currentSettings.letterSpacing + 1) % 4;
+  }
 
   if (action === "contrastDark") {
-    s.contrast = s.contrast === "dark" ? "default" : "dark";
+    currentSettings.contrast =
+      currentSettings.contrast === "dark" ? "default" : "dark";
   }
 
   if (action === "contrastLight") {
-    s.contrast = s.contrast === "light" ? "default" : "light";
+    currentSettings.contrast =
+      currentSettings.contrast === "light" ? "default" : "light";
   }
 
-  if (action === "contrastHigh") {
-    s.contrast = s.contrast === "high" ? "default" : "high";
+  if (action === "highlightTitles") {
+    currentSettings.highlightTitles = !currentSettings.highlightTitles;
   }
 
-  if (action === "highlightLinks") s.highlightLinks = !s.highlightLinks;
-  if (action === "highlightTitles") s.highlightTitles = !s.highlightTitles;
-  if (action === "hideImages") s.hideImages = !s.hideImages;
+  if (action === "hideImages") {
+    currentSettings.hideImages = !currentSettings.hideImages;
+  }
 
   update();
 };
@@ -262,7 +330,7 @@ onBeforeUnmount(() => {
   <div ref="wrapperRef" class="a11y-widget relative">
     <button
       type="button"
-      class="a11y-trigger bg-light rounded-full cursor-pointer h-full aspect-square flex items-center justify-center z-10"
+      class="a11y-trigger z-10 flex h-full aspect-square cursor-pointer items-center justify-center rounded-full bg-light"
       :aria-expanded="isOpen"
       :aria-controls="panelId"
       aria-label="Barrierefreiheits-Menü öffnen"
@@ -274,95 +342,112 @@ onBeforeUnmount(() => {
     <div
       v-show="isOpen"
       :id="panelId"
-      class="a11y-panel absolute px-11 py-7 rounded-3xl"
+      class="a11y-panel absolute w-fit max-w-[calc(100vw-2rem)] rounded-3xl px-5 py-7 min-[400px]:px-8"
       role="dialog"
       aria-label="Barrierefreiheits-Einstellungen"
     >
       <section class="a11y-section">
-        <p class="font-heading text-xl font-medium text-dark mb-5">Text</p>
+        <p class="mb-5 font-heading text-xl font-medium text-dark">Text</p>
 
-        <div class="a11y-grid">
+        <div
+          class="grid grid-cols-[repeat(2,7.5rem)] gap-3 max-[350px]:grid-cols-1"
+        >
           <button
             v-for="button in textButtons"
             :key="button.action"
             type="button"
-            class="a11y-card flex flex-col items-center justify-center bg-light text-dark w-30 h-30 rounded-md cursor-pointer"
+            class="a11y-card flex min-h-30 w-full cursor-pointer flex-col items-center justify-center rounded-md bg-light px-2 py-3 text-dark"
             :class="{ active: isActive(button.action) }"
             :aria-pressed="isActive(button.action)"
             @click="runAction(button.action)"
           >
             <component :is="button.icon" aria-hidden="true" />
-            <span class="a11y-label font-heading text-xs font-medium mt-3.5">{{
-              button.label
-            }}</span>
+
+            <span
+              class="a11y-label mt-3.5 text-center font-heading text-xs font-medium leading-tight"
+            >
+              {{ button.label }}
+            </span>
           </button>
         </div>
       </section>
 
       <section class="a11y-section">
-        <p class="font-heading text-xl font-medium text-dark mb-5">Kontrast</p>
+        <p class="mb-5 font-heading text-xl font-medium text-dark">Kontrast</p>
 
-        <div class="a11y-grid">
+        <div
+          class="grid grid-cols-[repeat(2,7.5rem)] gap-3 max-[350px]:grid-cols-1"
+        >
           <button
             v-for="button in contrastButtons"
             :key="button.action"
             type="button"
-            class="a11y-card flex flex-col items-center justify-center bg-light text-dark w-30 h-30 rounded-md cursor-pointer"
+            class="a11y-card flex min-h-30 w-full cursor-pointer flex-col items-center justify-center rounded-md bg-light px-2 py-3 text-dark"
             :class="{ active: isActive(button.action) }"
             :aria-pressed="isActive(button.action)"
             @click="runAction(button.action)"
           >
             <component :is="button.icon" aria-hidden="true" />
-            <span class="a11y-label font-heading text-xs font-medium mt-3.5">{{
-              button.label
-            }}</span>
+
+            <span
+              class="a11y-label mt-3.5 text-center font-heading text-xs font-medium leading-tight"
+            >
+              {{ button.label }}
+            </span>
           </button>
         </div>
       </section>
 
       <section class="a11y-section">
-        <p class="font-heading text-xl font-medium text-dark mb-5">Inhalte</p>
+        <p class="mb-5 font-heading text-xl font-medium text-dark">Inhalte</p>
 
-        <div class="a11y-grid">
+        <div
+          class="grid grid-cols-[repeat(2,7.5rem)] gap-3 max-[350px]:grid-cols-1"
+        >
           <button
             v-for="button in contentButtons"
             :key="button.action"
             type="button"
-            class="a11y-card flex flex-col items-center justify-center bg-light text-dark w-30 h-30 rounded-md cursor-pointer"
+            class="a11y-card flex min-h-30 w-full cursor-pointer flex-col items-center justify-center rounded-md bg-light px-2 py-3 text-dark"
             :class="{ active: isActive(button.action) }"
             :aria-pressed="isActive(button.action)"
             @click="runAction(button.action)"
           >
             <component :is="button.icon" aria-hidden="true" />
-            <span class="a11y-label font-heading text-xs font-medium mt-3.5">{{
-              button.label
-            }}</span>
+
+            <span
+              class="a11y-label mt-3.5 text-center font-heading text-xs font-medium leading-tight"
+            >
+              {{ button.label }}
+            </span>
           </button>
         </div>
       </section>
 
-      <Button @click="reset" class="w-100">Zurücksetzen</Button>
+      <Button class="w-full" @click="reset"> Zurücksetzen </Button>
     </div>
   </div>
 </template>
 
 <style scoped>
 .a11y-panel {
-  top: calc(100% + 24px);
-  right: 0;
+  left: 0;
+  bottom: calc(100% + 24px);
   z-index: 9999;
   background: #e3e5e6;
 }
 
+@media (min-width: 1280px) {
+  .a11y-panel {
+    top: calc(100% + 24px);
+    right: 0;
+    left: auto;
+    bottom: auto;
+  }
+}
 .a11y-section {
   position: relative;
   margin-bottom: 18px;
-}
-
-.a11y-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
 }
 
 .a11y-card:focus-visible {
@@ -455,23 +540,6 @@ onBeforeUnmount(() => {
 
 .a11y-contrast-light main a {
   color: #0000ee !important;
-}
-
-.a11y-contrast-high body,
-.a11y-contrast-high main {
-  background: #000 !important;
-  color: #ffff00 !important;
-}
-
-.a11y-contrast-high h1,
-.a11y-contrast-high h2,
-.a11y-contrast-high p {
-  color: #ffff00 !important;
-}
-
-.a11y-contrast-high main a {
-  color: #00ffff !important;
-  text-decoration: underline !important;
 }
 
 .a11y-highlight-links main a {

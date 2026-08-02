@@ -39,7 +39,7 @@ withDefaults(
       <p
         :class="[
           'mt-1 text-xs md:text-[10px] xl:mt-1.5 xl:text-xs',
-          theme === 'light' ? 'text-[#A6A6A6]' : 'text-[#666666]',
+          theme === 'light' ? 'text-[#d6d6d6]' : 'text-[#4f4f4f]',
         ]"
       >
         {{ description }}

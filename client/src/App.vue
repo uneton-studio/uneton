@@ -7,6 +7,7 @@ import Header from "./components/layout/Header.vue";
 
 import { useGlobalStore } from "@/stores/global.store";
 import { usePageLoadingStore } from "@/stores/page-loading.store";
+import A11yWidget from "./components/layout/A11yWidget.vue";
 
 const PASSWORD = import.meta.env.VITE_PREVIEW_PASSWORD;
 
@@ -100,6 +101,8 @@ watch(
 
   <div v-else class="flex min-h-screen flex-col">
     <Header />
+
+    <div class="fixed z-50 bottom-6 left-6"><A11yWidget /></div>
 
     <main class="relative flex-1">
       <AppLoadingScreen v-if="isPageLoading" :fullscreen="false" />
