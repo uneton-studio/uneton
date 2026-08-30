@@ -22,7 +22,10 @@ const emit = defineEmits<{
 const contentRef = ref<HTMLElement | null>(null);
 const maxHeight = ref("0px");
 
-const generatedId = `accordion-content-${Math.random().toString(36).slice(2, 9)}`;
+const generatedId = `accordion-content-${Math.random()
+  .toString(36)
+  .slice(2, 9)}`;
+
 const panelId = computed(() => props.contentId ?? generatedId);
 
 const cardClass = computed(() =>
@@ -30,6 +33,10 @@ const cardClass = computed(() =>
     ? "bg-light-soft text-dark"
     : "bg-dark-mute text-light",
 );
+
+const focusStyle = computed(() => ({
+  "--accordion-focus-color": props.theme === "light" ? "#0D3D45" : "#ffffff",
+}));
 
 const updateHeight = async () => {
   await nextTick();
@@ -56,7 +63,8 @@ onMounted(updateHeight);
     >
       <button
         type="button"
-        class="flex w-full cursor-pointer items-center justify-between p-4 text-left text-sm leading-5 sm:text-base sm:leading-4.5 xl:text-lg xl:leading-4"
+        class="accordion-trigger relative flex w-full cursor-pointer items-center justify-between rounded-2xl p-4 text-left text-sm leading-5 sm:text-base sm:leading-4.5 xl:text-lg xl:leading-4"
+        :style="focusStyle"
         :aria-expanded="isOpen"
         :aria-controls="panelId"
         @click="toggle"
@@ -92,3 +100,22 @@ onMounted(updateHeight);
     </div>
   </div>
 </template>
+
+<style scoped>
+.accordion-trigger {
+  outline: none !important;
+}
+
+.accordion-trigger::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border: 2px solid transparent;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.accordion-trigger:focus-visible::after {
+  border-color: var(--accordion-focus-color);
+}
+</style>

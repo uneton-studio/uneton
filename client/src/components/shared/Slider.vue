@@ -16,13 +16,24 @@ const props = withDefaults(
 
 const sliderRef = ref<HTMLElement | null>(null);
 const autoScrollInterval = ref<number | null>(null);
+const isDesktop = ref(false);
 
 const buttonClass = computed(() =>
   props.buttonBackground === "light" ? "bg-light" : "bg-light-soft",
 );
 
+const updateViewport = () => {
+  isDesktop.value = window.innerWidth >= 1280;
+
+  if (isDesktop.value) {
+    stopAutoScroll();
+  } else {
+    startAutoScroll();
+  }
+};
+
 const scroll = (direction: "prev" | "next") => {
-  if (!sliderRef.value) return;
+  if (!sliderRef.value || isDesktop.value) return;
 
   sliderRef.value.scrollBy({
     left:
@@ -34,9 +45,10 @@ const scroll = (direction: "prev" | "next") => {
 };
 
 const autoScroll = () => {
-  if (!sliderRef.value) return;
+  if (!sliderRef.value || isDesktop.value) return;
 
   const slider = sliderRef.value;
+
   const nextPosition = slider.scrollLeft + slider.clientWidth;
   const maxScroll = slider.scrollWidth - slider.clientWidth;
 
@@ -54,6 +66,8 @@ const autoScroll = () => {
 };
 
 const startAutoScroll = () => {
+  if (isDesktop.value) return;
+
   stopAutoScroll();
 
   autoScrollInterval.value = window.setInterval(() => {
@@ -62,18 +76,22 @@ const startAutoScroll = () => {
 };
 
 const stopAutoScroll = () => {
-  if (!autoScrollInterval.value) return;
+  if (autoScrollInterval.value === null) return;
 
-  clearInterval(autoScrollInterval.value);
+  window.clearInterval(autoScrollInterval.value);
   autoScrollInterval.value = null;
 };
 
 onMounted(() => {
-  startAutoScroll();
+  updateViewport();
+
+  window.addEventListener("resize", updateViewport);
 });
 
 onBeforeUnmount(() => {
   stopAutoScroll();
+
+  window.removeEventListener("resize", updateViewport);
 });
 </script>
 
@@ -83,7 +101,7 @@ onBeforeUnmount(() => {
       <div
         ref="sliderRef"
         class="no-scrollbar grid w-full auto-cols-[100%] grid-flow-col overflow-x-auto scroll-smooth snap-x snap-mandatory sm:auto-cols-[50%] xl:grid-flow-row xl:auto-cols-auto xl:grid-cols-3 xl:overflow-visible xl:snap-none xl:gap-5"
-        tabindex="0"
+        :tabindex="isDesktop ? undefined : 0"
         @mouseenter="stopAutoScroll"
         @mouseleave="startAutoScroll"
         @focusin="stopAutoScroll"
@@ -97,7 +115,7 @@ onBeforeUnmount(() => {
     <div class="mt-10 flex justify-end gap-4 xl:hidden">
       <button
         type="button"
-        class="flex size-10 items-center justify-center rounded-full transition-opacity focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-light"
+        class="slider-control relative flex size-10 items-center justify-center rounded-full transition-opacity"
         :class="buttonClass"
         aria-label="Previous slide"
         @click="scroll('prev')"
@@ -120,7 +138,7 @@ onBeforeUnmount(() => {
 
       <button
         type="button"
-        class="flex size-10 items-center justify-center rounded-full transition-opacity focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-light"
+        class="slider-control relative flex size-10 items-center justify-center rounded-full transition-opacity"
         :class="buttonClass"
         aria-label="Next slide"
         @click="scroll('next')"
@@ -156,6 +174,23 @@ onBeforeUnmount(() => {
 .slider-bleed {
   margin-left: -1.25rem;
   margin-right: -1.25rem;
+}
+
+.slider-control {
+  outline: none !important;
+}
+
+.slider-control::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border: 2px solid transparent;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.slider-control:focus-visible::after {
+  border-color: currentColor;
 }
 
 :deep(.slider-slide) {

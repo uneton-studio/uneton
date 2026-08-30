@@ -48,6 +48,8 @@ defineProps<Props>();
     <footer v-if="button" class="mt-auto">
       <Button
         :variant="button.variant"
+        :href="button.href"
+        tag="a"
         color="dark-mute"
         class="w-full sm:w-auto sm:min-w-40 xl:min-w-50 mt-12 sm:mt-0"
       >

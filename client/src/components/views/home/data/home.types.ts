@@ -82,3 +82,5 @@ export type QuestionExtraCard = TextContent & WithIcon & WithButtons;
 export type Questions = Section<QuestionItem> & {
   card?: QuestionExtraCard;
 };
+
+export type Closing = TextContent & BodyContent & WithButtons;

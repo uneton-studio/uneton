@@ -19,7 +19,7 @@ defineProps<{
     :href="node.url"
     :target="node.target || undefined"
     rel="noopener noreferrer"
-    class="underline"
+    class="rich-text-link underline"
   >
     <RichTextNode
       v-for="(child, index) in node.children"
@@ -36,3 +36,24 @@ defineProps<{
     {{ node.text }}
   </template>
 </template>
+
+<style scoped>
+.rich-text-link {
+  position: relative;
+  outline: none !important;
+  border-radius: 0.125rem;
+}
+
+.rich-text-link::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border: 2px solid transparent;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.rich-text-link:focus-visible::after {
+  border-color: currentColor;
+}
+</style>

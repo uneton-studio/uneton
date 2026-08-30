@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import BarrierFree from "@/components/views/home/BarrierFree.vue";
+import Closing from "@/components/views/home/Closing.vue";
 import Hero from "@/components/views/home/hero/Hero.vue";
 import Mission from "@/components/views/home/Mission.vue";
 import Principles from "@/components/views/home/Principles.vue";
@@ -19,5 +20,6 @@ import Standards from "@/components/views/home/Standards.vue";
     <BarrierFree />
     <Standards />
     <Questions />
+    <Closing />
   </main>
 </template>

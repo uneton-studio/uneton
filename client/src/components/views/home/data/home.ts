@@ -13,6 +13,7 @@ import type {
   BarrierFree,
   Standards,
   Questions,
+  Closing,
 } from "./home.types";
 import GlobeIcon from "@/components/icons/GlobeIcon.vue";
 import LockIcon from "@/components/icons/LockIcon.vue";
@@ -34,13 +35,13 @@ export const hero: Hero = {
     "Wir bauen keine Websites für dich - wir bauen sie mit dir. Corporate steht bei uns für ganzheitliche digitale Lösungen aus einer Hand und echte Partnerschaft auf Augenhöhe.",
   buttons: [
     {
-      label: "Erstgespräch vereinbaren",
-      href: "#services",
+      label: "Persönlich sprechen",
+      href: "tel:+4915561960464",
       variant: "outlined",
     },
     {
       label: "Projekt starten",
-      href: "#contact",
+      href: "mailto:kontakt@uneton.de",
       variant: "filled",
     },
   ],
@@ -231,7 +232,11 @@ export const standards: Standards = {
     description:
       "Wir entwickeln Websites, die heute überzeugen und morgen Maßstäbe setzen.",
     items: ["Nachhaltig", "Barrierefrei", "Zukunftssicher"],
-    button: { label: "Projekt starten", href: "/", variant: "filled" },
+    button: {
+      label: "Projekt starten",
+      href: "mailto:kontakt@uneton.de",
+      variant: "filled",
+    },
   },
   items: [
     {
@@ -286,8 +291,16 @@ export const questions: Questions = {
     description:
       "Erzähl uns in 30 Minuten von deiner Idee - wir geben dir eine ehrliche Einschätzung und erste konkrete Ansätze. Kostenfrei und unverbindlich.",
     buttons: [
-      { label: "Projekt starten", href: "/", variant: "outlined" },
-      { label: "Erstgespräch vereinbaren", href: "/", variant: "filled" },
+      {
+        label: "Persönlich sprechen",
+        href: "tel:+4915561960464",
+        variant: "outlined",
+      },
+      {
+        label: "Projekt starten",
+        href: "mailto:kontakt@uneton.de",
+        variant: "filled",
+      },
     ],
     icon: GlobeLargeIcon,
   },
@@ -339,6 +352,23 @@ export const questions: Questions = {
       title: "Mit welchen Tools arbeitet ihr?",
       description:
         "Wir arbeiten mit Figma, VS Code, GitHub und modernen Frameworks wie React & Tailwind.",
+    },
+  ],
+};
+
+export const closing: Closing = {
+  title: "Projekt im Kopf?",
+  body: `Du hast eine <span class="text-dark font-heading font-medium italic">Idee</span>, ein konkretes <span class="text-dark font-heading font-medium italic">Projekt</span> oder einfach eine erste Frage? Erzähl uns, was du vorhast, und wir finden gemeinsam den passenden <span class="text-dark font-heading font-medium italic">Weg</span> für dein Vorhaben. Dabei denken wir <span class="text-dark font-heading font-medium italic">Strategie, Design und Entwicklung</span> von Anfang an zusammen.`,
+  buttons: [
+    {
+      label: "Persönlich sprechen",
+      href: "tel:+4915561960464",
+      variant: "outlined",
+    },
+    {
+      label: "Projekt starten",
+      href: "mailto:kontakt@uneton.de",
+      variant: "filled",
     },
   ],
 };

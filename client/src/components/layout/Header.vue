@@ -5,7 +5,6 @@ import { useRoute } from "vue-router";
 import { useGlobalStore } from "@/stores/global.store";
 import Button from "../shared/Button.vue";
 import DotsIcon from "../icons/DotsIcon.vue";
-import A11yWidget from "./A11yWidget.vue";
 
 const route = useRoute();
 const { global } = useGlobalStore();
@@ -65,12 +64,16 @@ onBeforeUnmount(() => {
         :class="showBackground ? 'bg-dark-mute shadow-md' : 'bg-transparent'"
       >
         <div class="flex items-center md:ps-3">
-          <RouterLink to="/" @click="closeMobileMenu">
+          <RouterLink
+            to="/"
+            class="header-focus rounded-md text-light"
+            @click="closeMobileMenu"
+          >
             <img
               v-if="global?.header.logo?.url"
               :src="logoSrc"
               :alt="global?.header.logo?.alternativeText || ''"
-              class="h-4.5 xl:h-7 w-auto"
+              class="h-4.5 w-auto xl:h-7"
             />
           </RouterLink>
         </div>
@@ -80,14 +83,14 @@ onBeforeUnmount(() => {
             v-for="link in global?.header.links"
             :key="link.id"
             :to="link.href"
-            class="text-light no-underline text-sm"
+            class="header-focus rounded-sm text-light text-sm no-underline"
           >
             {{ link.label }}
           </RouterLink>
         </div>
 
         <div class="hidden items-stretch gap-4 xl:flex">
-          <A11yWidget />
+          <!-- <A11yWidget /> -->
 
           <Button
             v-for="btn in global?.header.buttons"
@@ -114,14 +117,14 @@ onBeforeUnmount(() => {
       <Transition name="mobile-menu">
         <div
           v-if="isMobileMenuOpen"
-          class="mx-auto sm:ms-auto sm:me-0 mt-4 w-[90%] sm:max-w-100 rounded-3xl bg-dark-mute p-2 xl:hidden"
+          class="mx-auto mt-4 w-[90%] rounded-3xl bg-dark-mute p-2 sm:ms-auto sm:me-0 sm:max-w-100 xl:hidden"
         >
           <div class="flex flex-col items-center gap-7 pt-4">
             <RouterLink
               v-for="link in global?.header.links"
               :key="link.id"
               :to="link.href"
-              class="text-light text-sm no-underline"
+              class="header-focus rounded-sm text-light text-sm no-underline"
               @click="closeMobileMenu"
             >
               {{ link.label }}
@@ -134,7 +137,7 @@ onBeforeUnmount(() => {
             :href="btn.href"
             variant="filled"
             color="white"
-            class="mt-5 w-full justify-center h-12"
+            class="mt-5 h-12 w-full justify-center"
             @click="closeMobileMenu"
           >
             {{ btn.label }}
@@ -146,6 +149,24 @@ onBeforeUnmount(() => {
 </template>
 
 <style scoped>
+.header-focus {
+  position: relative;
+  outline: none !important;
+}
+
+.header-focus::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border: 2px solid transparent;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.header-focus:focus-visible::after {
+  border-color: currentColor;
+}
+
 .mobile-menu-enter-active,
 .mobile-menu-leave-active {
   transition:

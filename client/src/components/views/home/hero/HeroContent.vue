@@ -24,6 +24,8 @@ import { hero } from "../data/index.ts";
         v-for="button in hero.buttons"
         :key="button.label"
         :variant="button.variant"
+        :href="button.href"
+        tag="a"
         color="white"
         class="flex-1 whitespace-nowrap max-[430px]:w-full sm:flex-none"
       >

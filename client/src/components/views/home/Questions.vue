@@ -31,8 +31,9 @@ const openItemId = ref<string | number | null>(null);
             <Button
               v-for="button in questions.card.buttons"
               :key="button.label"
-              :href="button.href"
               :variant="button.variant"
+              :href="button.href"
+              tag="a"
             >
               {{ button.label }}
             </Button>
@@ -47,8 +48,9 @@ const openItemId = ref<string | number | null>(null);
             <Button
               v-for="button in questions.card.buttons"
               :key="button.label"
-              :href="button.href"
               :variant="button.variant"
+              :href="button.href"
+              tag="a"
             >
               {{ button.label }}
             </Button>

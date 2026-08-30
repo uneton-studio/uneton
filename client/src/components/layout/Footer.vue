@@ -9,9 +9,11 @@ const { global } = useGlobalStore();
 const logoSrc = computed(() =>
   getImageSrc(global.value?.footer.logo?.url || ""),
 );
+
 const logoSmallSrc = computed(() =>
   getImageSrc(global.value?.footer.logoSmall?.url || ""),
 );
+
 const copyrightIconSrc = computed(() =>
   getImageSrc(global.value?.footer.copyright.icon?.url || ""),
 );
@@ -31,22 +33,27 @@ const currentYear = new Date().getFullYear();
           >
             {{ global.footer.newsletter.label }}
           </p>
+
           <Button variant="outlined">
             {{ global.footer.newsletter.button.label }}
           </Button>
         </div>
+
         <div class="flex gap-10">
           <nav
             v-for="nav in global?.footer.linkBlocks"
             :key="nav.id"
             :aria-label="nav.label"
           >
-            <p class="font-heading text-2xl leading-8 mb-8">{{ nav.label }}</p>
+            <p class="font-heading text-2xl leading-8 mb-8">
+              {{ nav.label }}
+            </p>
+
             <ul class="flex flex-col gap-4">
               <li v-for="link in nav.links" :key="link.id">
                 <a
                   :href="link.href"
-                  class="font-heading text-sm leading-5 xl:text-base xl:leading-5 no-underline"
+                  class="footer-focus rounded-sm font-heading text-sm leading-5 xl:text-base xl:leading-5 no-underline"
                 >
                   {{ link.label }}
                 </a>
@@ -55,6 +62,7 @@ const currentYear = new Date().getFullYear();
           </nav>
         </div>
       </div>
+
       <div class="hidden sm:flex items-end justify-between">
         <div
           v-if="global?.footer.copyright"
@@ -65,12 +73,14 @@ const currentYear = new Date().getFullYear();
             :alt="global?.footer.copyright.icon?.alternativeText || ''"
             class="w-4 h-4 xl:w-6.5 xl:h-6.5"
           />
+
           <p
             class="font-heading text-base leading-5 xl:text-2xl xl:leading-8 ms-2"
           >
             {{ global?.footer.copyright.label }} {{ currentYear }}
           </p>
         </div>
+
         <div>
           <img
             v-if="logoSmallSrc"
@@ -80,6 +90,7 @@ const currentYear = new Date().getFullYear();
           />
         </div>
       </div>
+
       <div class="block sm:hidden">
         <img
           v-if="logoSrc"
@@ -91,3 +102,23 @@ const currentYear = new Date().getFullYear();
     </div>
   </footer>
 </template>
+
+<style scoped>
+.footer-focus {
+  position: relative;
+  outline: none !important;
+}
+
+.footer-focus::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border: 2px solid transparent;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.footer-focus:focus-visible::after {
+  border-color: currentColor;
+}
+</style>
